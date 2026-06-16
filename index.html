@@ -1,32 +1,273 @@
-<!-- นี่คือโครงสร้างหน้าเว็บทังหมด ้ -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>หน้าแนะน;าตัวของฉัน</title>
-<style>
-body {
-background-color: #B5C4C0; color: #333;
-text-align: center; padding: 50px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแนะนำตัวของฉัน</title>
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap)" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-}
-.card {
-background: #96E0CB; border-radius: 50px;
-box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-max-width: 500px; margin: 0 auto; padding: 30px;
+        body {
+            font-family: 'Prompt', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
 
-}
-h1 { color: #1A1A1A; }
-p { font-size: 18px; line-height: 1.6; }
-</style>
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .content {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .greeting {
+            font-size: 14px;
+            color: #764ba2;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            background: linear-gradient(90deg, #f8f9ff 0%, transparent 100%);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .info-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .info-text strong {
+            color: #764ba2;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            width: fit-content;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .image-section {
+            flex: 0 0 380px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        .image-section::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            bottom: -30px;
+            left: -30px;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #764ba2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .github-note {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #fef3f3 0%, transparent 100%);
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex-direction: column-reverse;
+            }
+
+            .image-section {
+                flex: none;
+                padding: 40px;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="card">
-<h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน</h1>
-<p>สวัสดีครับ! ผมชื่อ <strong>เตชินท์(Techin)</strong></p>
-<p>ขณะนี้กำลังศึกษา/สนใจด้าน  Medical/The Faculty of Medicine Ramathibodi</p>
-<p>นี่คือเว็บไซต์แรกของผมที่โฮสต์บน GitHub Pages!</p>
-  <a href="portfolio.html" class="btn"> เปิดหน้าถัดไป</a>
-</div>
+    <div class="card">
+        <div class="content">
+            <span class="greeting">สวัสดีครับ!</span>
+            <h1>เตชินท์ (Techin)</h1>
+            <p class="subtitle">นักศึกษาแพทย์ | Medical Student</p>
+
+            <div class="info-item">
+                <div class="info-icon">🎓</div>
+                <div class="info-text">
+                    กำลังศึกษา/สนใจด้าน <strong>Medical</strong>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">🏥</div>
+                <div class="info-text">
+                    The Faculty of Medicine <strong>Ramathibodi</strong>
+                </div>
+            </div>
+
+            <div class="github-note">
+                🌐 นี่คือเว็บไซต์แรกของผมที่โฮสต์บน <strong>GitHub Pages!</strong>
+            </div>
+
+            <a href="portfolio.html" class="btn">
+                เปิดหน้าถัดไป
+                <svg xmlns="[w3.org](http://www.w3.org/2000/svg)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="image-section">
+            <div class="profile-img-wrapper">
+                <!-- ใส่ path รูปภาพของคุณที่นี่ -->
+                <img src="your-photo.jpg" alt="Techin" class="profile-img">
+                <div class="badge">🩺 Med Student</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
