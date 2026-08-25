@@ -11,7 +11,7 @@
     --paper:#F5F6F2;
     --paper-panel:#EAEDE7;
     --ink:#16232B;
-    --ink-soft:#56635F;
+    --ink-soft:#3D4844;
     --crimson:#96263A;
     --crimson-wash:rgba(150,38,58,0.10);
     --teal:#2C6259;
@@ -128,9 +128,9 @@
   .ecg-divider{ width:100%; max-width:420px; height:24px; margin:6px 0 24px; }
   .ecg-divider polyline{ fill:none; stroke:var(--crimson); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.7; }
 
-  p, li{ color:var(--ink); font-size:15.5px; line-height:1.85; }
-  .soft{ color:var(--ink-soft); }
-  .placeholder{ color:#9aa39d; font-style:italic; }
+  p, li{ color:var(--ink); font-size:16px; font-weight:500; line-height:1.8; }
+  .soft{ color:var(--ink-soft); font-weight:500; }
+  .placeholder{ color:#7C877F; font-style:italic; font-weight:500; }
 
   /* ===== COVER ===== */
   .cover{ height:100%; display:flex; align-items:center; gap:48px; }
@@ -183,12 +183,12 @@
   /* ===== GRID / CARD HELPERS ===== */
   .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:20px 32px; }
   .field{ border-bottom:1px solid var(--line); padding-bottom:10px; }
-  .field .label{ font-family:'Space Mono', monospace; font-size:10.5px; color:var(--ink-soft); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px; }
-  .field .value{ font-size:15.5px; font-weight:500; }
+  .field .label{ font-family:'Space Mono', monospace; font-size:10.5px; color:var(--ink-soft); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px; font-weight:600; }
+  .field .value{ font-size:16px; font-weight:600; }
 
   table.edu{ width:100%; border-collapse:collapse; margin-top:8px; }
-  table.edu th, table.edu td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); font-size:14.5px; }
-  table.edu th{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:500; border-top:2px solid var(--teal); }
+  table.edu th, table.edu td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); font-size:15px; font-weight:500; }
+  table.edu th{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; border-top:2px solid var(--teal); }
 
   .activity-list{ list-style:none; margin-top:8px; }
   .activity-item{ display:grid; grid-template-columns:56px 90px 1fr; align-items:center; gap:16px; padding:14px 10px; border-bottom:1px solid var(--line); border-radius:var(--radius); transition:background .2s ease; }
@@ -201,6 +201,15 @@
 
   .interest-card{ background:var(--paper-panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:var(--radius); padding:22px 24px; margin-bottom:16px; box-shadow:0 2px 10px rgba(22,35,43,0.04); }
   .interest-card .major{ font-family:'Noto Serif Thai', serif; font-weight:600; font-size:19px; color:var(--teal-dark); margin-bottom:6px; }
+
+  /* การ์ดอันดับคณะ/มหาวิทยาลัย (3 อันดับ) */
+  .uni-card{ display:flex; gap:18px; align-items:flex-start; background:var(--paper-panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px; box-shadow:0 2px 10px rgba(22,35,43,0.04); }
+  .uni-rank{ width:30px; height:30px; border-radius:50%; border:1.5px solid var(--crimson); color:var(--crimson); font-family:'Space Mono', monospace; font-size:12.5px; font-weight:600; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .uni-photo{ width:128px; height:92px; flex-shrink:0; border:1px solid var(--line); background:#fff; padding:4px; }
+  .uni-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .uni-info{ flex:1; min-width:160px; }
+  .uni-info .major{ font-family:'Noto Serif Thai', serif; font-weight:600; font-size:18px; color:var(--teal-dark); margin-bottom:2px; }
+  .uni-info .uni-name{ font-family:'Space Mono', monospace; font-size:11.5px; color:var(--crimson); letter-spacing:.04em; margin-bottom:6px; font-weight:600; }
 
   /* ===== FLOATING NAV (มุมล่างขวา) ===== */
   .nav-float{ position:absolute; bottom:22px; right:26px; z-index:6; display:flex; align-items:center; gap:12px; }
@@ -219,6 +228,8 @@
     .grid2{ grid-template-columns:1fr; }
     .activity-item{ grid-template-columns:44px 70px 1fr; gap:10px; }
     .nav-float{ right:16px; bottom:16px; }
+    .uni-card{ flex-wrap:wrap; }
+    .uni-photo{ width:100px; height:74px; }
   }
 </style>
 </head>
@@ -289,11 +300,11 @@
         <tbody>
           <tr><td>มัธยมศึกษาตอนปลาย</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
           <tr><td>มัธยมศึกษาตอนต้น</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
+          <tr><td>ประถมศึกษา</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
         </tbody>
       </table>
-      <div class="grid2" style="margin-top:24px;">
-        <div class="field"><div class="label">แผนการเรียน</div><div class="value placeholder">เช่น วิทย์-คณิต</div></div>
-        <div class="field"><div class="label">ผลสอบมาตรฐาน</div><div class="value placeholder">TGAT / TPAT1 / A-Level ฯลฯ</div></div>
+      <div class="field" style="margin-top:24px; max-width:320px;">
+        <div class="label">แผนการเรียน</div><div class="value placeholder">เช่น วิทย์-คณิต</div>
       </div>
     </section>
 
@@ -356,6 +367,11 @@
           <div class="date placeholder">2565</div>
           <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
         </li>
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAEDE7/56635F?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2564</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
       </ul>
     </section>
 
@@ -368,12 +384,38 @@
       </div>
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><polyline points="0,13 50,13 65,13 74,4 83,22 92,13 120,13 170,13 185,13 194,4 203,22 212,13 240,13 290,13 305,13 314,4 323,22 332,13 420,13"/></svg>
 
-      <!-- ✏️ [แก้ไขข้อความ] คณะที่สนใจ เหตุผล และเป้าหมาย -->
-      <div class="interest-card">
-        <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
-        <p class="soft placeholder">เหตุผลที่สนใจสาขานี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+      <!--
+        ✏️ [แก้ไขข้อความ] 📸 [ใส่รูปภาพ] คณะ/มหาวิทยาลัยที่สนใจ 3 อันดับ
+        แต่ละ .uni-card คือ 1 อันดับ — แก้ src รูปในแต่ละ .uni-photo เป็นรูปมหาวิทยาลัยของจริง
+      -->
+      <div class="uni-card">
+        <div class="uni-rank">01</div>
+        <div class="uni-photo"><img src="https://placehold.co/256x184/EAEDE7/56635F?text=มหาวิทยาลัย+1" alt="ภาพมหาวิทยาลัยอันดับ 1"></div>
+        <div class="uni-info">
+          <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+          <div class="uni-name placeholder">ชื่อมหาวิทยาลัย</div>
+          <p class="soft placeholder">เหตุผลที่สนใจอันดับนี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+        </div>
       </div>
-      <p class="placeholder">เป้าหมายในอนาคตหลังจบการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น</p>
+      <div class="uni-card">
+        <div class="uni-rank">02</div>
+        <div class="uni-photo"><img src="https://placehold.co/256x184/EAEDE7/56635F?text=มหาวิทยาลัย+2" alt="ภาพมหาวิทยาลัยอันดับ 2"></div>
+        <div class="uni-info">
+          <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+          <div class="uni-name placeholder">ชื่อมหาวิทยาลัย</div>
+          <p class="soft placeholder">เหตุผลที่สนใจอันดับนี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+        </div>
+      </div>
+      <div class="uni-card">
+        <div class="uni-rank">03</div>
+        <div class="uni-photo"><img src="https://placehold.co/256x184/EAEDE7/56635F?text=มหาวิทยาลัย+3" alt="ภาพมหาวิทยาลัยอันดับ 3"></div>
+        <div class="uni-info">
+          <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+          <div class="uni-name placeholder">ชื่อมหาวิทยาลัย</div>
+          <p class="soft placeholder">เหตุผลที่สนใจอันดับนี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+        </div>
+      </div>
+      <p class="placeholder" style="margin-top:18px;">เป้าหมายในอนาคตหลังจบการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น</p>
     </section>
 
   </div>
