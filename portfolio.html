@@ -2,39 +2,435 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta viewport="width=device-width, initial-scale=1.0">
-<title>แฟ้มสะสมผลงานของฉัน  </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พอร์ตฟอลิโอ | สายแพทย์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-body { font-family: sans-serif; background-color: #ECEDED; text-align: center;
-padding: 30px; }
-.container { max-width: 800px; margin: 0 auto; }
-.project-card { background:#F8F8F8; padding: 20px; margin: 20px 0; border-radius:
-8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
-.btn { display: inline-block; background: #d35400; color white; padding: 10px
-20px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+  :root{
+    --paper:#F5F6F2;
+    --paper-panel:#EAEDE7;
+    --ink:#16232B;
+    --ink-soft:#56635F;
+    --crimson:#96263A;
+    --crimson-wash:rgba(150,38,58,0.10);
+    --teal:#2C6259;
+    --teal-dark:#153730;
+    --line:#D7DBD3;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:var(--teal-dark);
+    color:var(--ink);
+    font-family:'Noto Sans Thai', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+  .app{ display:flex; flex-direction:column; height:100vh; width:100vw; position:relative; }
+
+  /* ===== TOP BAR — เมนูหัวข้อ ===== */
+  .topbar{
+    flex-shrink:0;
+    background:var(--teal-dark);
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:0 22px;
+    height:70px;
+    border-bottom:1px solid rgba(245,246,242,0.08);
+  }
+  .brand{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .brand svg{ width:18px; height:18px; stroke:var(--crimson); }
+  .brand span{ font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.14em; color:rgba(245,246,242,0.55); }
+
+  .nav-tabs{
+    display:flex;
+    gap:4px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    flex:1;
+    height:100%;
+  }
+  .nav-tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    padding:0 16px;
+    cursor:pointer;
+    border-bottom:2px solid transparent;
+    position:relative;
+    transition:border-color .2s ease;
+  }
+  .tab .icon{ position:relative; }
+  .tab .icon svg{ width:16px; height:16px; stroke:rgba(245,246,242,0.45); transition:stroke .2s ease; }
+  .tab .blip{
+    position:absolute; top:-3px; right:-5px;
+    width:5px; height:5px; border-radius:50%;
+    background:var(--crimson);
+    opacity:0;
+    animation:blip 1.6s ease-in-out infinite;
+  }
+  .tab span{ font-size:11.5px; letter-spacing:.03em; color:rgba(245,246,242,0.55); white-space:nowrap; transition:color .2s ease; }
+  .tab.active{ border-bottom-color:var(--crimson); }
+  .tab.active .icon svg{ stroke:var(--crimson); }
+  .tab.active span{ color:var(--paper); font-weight:600; }
+  .tab.active .blip{ opacity:1; }
+  .tab:hover span{ color:var(--paper); }
+  @keyframes blip{ 0%,100%{opacity:.3; transform:scale(.8);} 50%{opacity:1; transform:scale(1.2);} }
+
+  .rec-tag{ font-family:'Space Mono', monospace; font-size:10.5px; color:rgba(245,246,242,0.4); letter-spacing:.04em; flex-shrink:0; }
+
+  .progress-track{ height:3px; background:rgba(245,246,242,0.08); flex-shrink:0; }
+  .progress-fill{ height:100%; background:var(--crimson); width:20%; transition:width .4s ease; }
+
+  /* ===== MAIN STAGE ===== */
+  .stage{
+    flex:1;
+    position:relative;
+    background:
+      repeating-linear-gradient(to bottom, transparent, transparent 27px, rgba(22,35,43,0.04) 27px, rgba(22,35,43,0.04) 28px),
+      var(--paper);
+    overflow:hidden;
+  }
+  .slide{
+    position:absolute; inset:0;
+    padding:44px 64px 90px;
+    overflow-y:auto;
+    opacity:0; transform:translateY(18px);
+    pointer-events:none;
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .slide.active{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px; letter-spacing:.14em; color:var(--crimson);
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--crimson); }
+
+  .title-row{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+  .title-row svg{ width:26px; height:26px; stroke:var(--teal); flex-shrink:0; }
+  h1.slide-title{
+    font-family:'Noto Serif Thai', serif;
+    font-weight:700;
+    font-size:clamp(24px, 3.4vw, 38px);
+    color:var(--teal-dark);
+    line-height:1.25;
+  }
+  .ecg-divider{ width:100%; max-width:420px; height:24px; margin:6px 0 24px; }
+  .ecg-divider polyline{ fill:none; stroke:var(--crimson); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.7; }
+
+  p, li{ color:var(--ink); font-size:15.5px; line-height:1.85; }
+  .soft{ color:var(--ink-soft); }
+  .placeholder{ color:#9aa39d; font-style:italic; }
+
+  /* ===== COVER ===== */
+  .cover{ height:100%; display:flex; align-items:center; gap:48px; }
+  .cover-text{ max-width:520px; flex-shrink:1; }
+  .cover .name{
+    font-family:'Noto Serif Thai', serif; font-weight:700;
+    font-size:clamp(28px, 4vw, 46px);
+    color:var(--teal-dark); line-height:1.2; margin:8px 0 6px;
+  }
+  .cover .goal{ font-size:17px; color:var(--ink-soft); margin-bottom:18px; }
+  .cover .pulse-hero{ width:100%; max-width:420px; height:44px; margin-bottom:18px; }
+  .cover .pulse-hero polyline{
+    fill:none; stroke:var(--crimson); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:2400; stroke-dashoffset:2400;
+    animation:draw 1.8s ease-out .3s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .cover .quote{ border-left:3px solid var(--teal); padding-left:18px; font-family:'Noto Serif Thai', serif; font-size:15.5px; color:var(--ink-soft); font-style:italic; }
+  .rec-no{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); margin-top:22px; letter-spacing:.04em; }
+
+  /* กรอบรูปโปรไฟล์หน้าปก แบบ "แปะเทป" ติดแฟ้ม */
+  .photo-frame{
+    flex-shrink:0;
+    width:216px; aspect-ratio:3/4;
+    background:#fff;
+    padding:8px;
+    border:1px solid var(--line);
+    box-shadow:0 10px 26px rgba(21,55,48,0.14);
+    transform:rotate(-3deg);
+    position:relative;
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .photo-frame::before, .photo-frame::after{
+    content:""; position:absolute; top:-9px; width:34px; height:13px;
+    background:rgba(234,237,231,0.92); border:1px solid var(--line);
+  }
+  .photo-frame::before{ left:12px; transform:rotate(-8deg); }
+  .photo-frame::after{ right:12px; transform:rotate(6deg); }
+
+  /* กรอบรูปติดบัตรทางการ (ใช้หน้าประวัติส่วนตัว) */
+  .id-photo{
+    width:120px; height:150px;
+    background:#fff;
+    border:1px solid var(--line);
+    padding:5px;
+    flex-shrink:0;
+  }
+  .id-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ===== GRID / CARD HELPERS ===== */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:20px 32px; }
+  .field{ border-bottom:1px solid var(--line); padding-bottom:10px; }
+  .field .label{ font-family:'Space Mono', monospace; font-size:10.5px; color:var(--ink-soft); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px; }
+  .field .value{ font-size:15.5px; font-weight:500; }
+
+  table.edu{ width:100%; border-collapse:collapse; margin-top:8px; }
+  table.edu th, table.edu td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); font-size:14.5px; }
+  table.edu th{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:500; border-top:2px solid var(--teal); }
+
+  .activity-list{ list-style:none; margin-top:8px; }
+  .activity-item{ display:grid; grid-template-columns:56px 90px 1fr; align-items:center; gap:16px; padding:14px 10px; border-bottom:1px solid var(--line); border-radius:var(--radius); transition:background .2s ease; }
+  .activity-item:hover{ background:var(--paper-panel); }
+  .activity-thumb{ width:56px; height:56px; border:1px solid var(--line); background:#fff; padding:3px; }
+  .activity-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .activity-item .date{ font-family:'Space Mono', monospace; font-size:12px; color:var(--crimson); display:flex; align-items:center; gap:6px; }
+  .activity-item .date::before{ content:"+"; font-weight:700; }
+  .activity-item .title{ font-weight:600; margin-bottom:3px; }
+
+  .interest-card{ background:var(--paper-panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:var(--radius); padding:22px 24px; margin-bottom:16px; box-shadow:0 2px 10px rgba(22,35,43,0.04); }
+  .interest-card .major{ font-family:'Noto Serif Thai', serif; font-weight:600; font-size:19px; color:var(--teal-dark); margin-bottom:6px; }
+
+  /* ===== FLOATING NAV (มุมล่างขวา) ===== */
+  .nav-float{ position:absolute; bottom:22px; right:26px; z-index:6; display:flex; align-items:center; gap:12px; }
+  .nav-float .count{ font-family:'Space Mono', monospace; font-size:11.5px; color:var(--ink-soft); }
+  .nav-float button{ width:34px; height:34px; border:1px solid var(--line); background:var(--paper); color:var(--teal-dark); cursor:pointer; font-size:14px; border-radius:50%; transition:background .2s, color .2s; box-shadow:0 2px 8px rgba(22,35,43,0.06); }
+  .nav-float button:hover{ background:var(--teal); color:var(--paper); }
+
+  @media (max-width:760px){
+    .topbar{ padding:0 14px; gap:10px; }
+    .brand span, .rec-tag{ display:none; }
+    .tab{ padding:0 11px; }
+    .tab span{ font-size:10.5px; }
+    .slide{ padding:32px 20px 84px; }
+    .cover{ flex-direction:column-reverse; justify-content:center; gap:24px; text-align:left; }
+    .photo-frame{ width:150px; }
+    .grid2{ grid-template-columns:1fr; }
+    .activity-item{ grid-template-columns:44px 70px 1fr; gap:10px; }
+    .nav-float{ right:16px; bottom:16px; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
-<h1> แฟมสะสมงาน  (Portfolio)</h1>
-<p>นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจครับ</p>
-<!-- กล่องผลงานชิ้นที่  1 -->
-<div class="project-card">
-<h3>1. โครงงาน/ชมงานวิทยาศาสตร์คำนวณนี้ </h3>
-<p>รายละเอียดชิ้นงานนี้ : เขียนอธิบายสั้นๆ ว่าทำอะไร ได้เรียนรู้อะไรจากงานนี้บ้าง  </p>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/></svg>
+      <span>PORTFOLIO</span>
+    </div>
+    <nav class="nav-tabs" id="tabs"></nav>
+    <div class="rec-tag">REC. NO. 2569-001</div>
+  </header>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="stage">
+
+    <!-- 01 คำนำ -->
+    <section class="slide" data-index="0">
+      <div class="cover">
+        <div class="cover-text">
+          <div class="eyebrow">Portfolio · Medical Track</div>
+          <svg class="pulse-hero" viewBox="0 0 420 44" preserveAspectRatio="none">
+            <polyline points="0,22 50,22 68,22 78,6 88,38 98,22 130,22 180,22 198,22 208,6 218,38 228,22 260,22 310,22 328,22 338,6 348,38 358,22 420,22"/>
+          </svg>
+
+          <!-- ✏️ [แก้ไขข้อความ] ชื่อ-นามสกุล และคณะที่ต้องการสมัคร -->
+          <div class="name">ชื่อ นามสกุล</div>
+          <div class="goal">ผู้สมัครเข้าศึกษาต่อคณะ <span class="placeholder">[แพทยศาสตร์ / ทันตแพทยศาสตร์ ฯลฯ]</span></div>
+
+          <!-- ✏️ [แก้ไขข้อความ] คำโปรยแนะนำตัวสั้นๆ -->
+          <p class="soft" style="margin-bottom:16px;">
+            แฟ้มสะสมผลงานฉบับนี้รวบรวมประวัติการศึกษา ประวัติส่วนตัว กิจกรรม
+            และความมุ่งมั่นในการเดินสู่เส้นทางวิชาชีพแพทย์ เพื่อประกอบการพิจารณาเข้าศึกษาต่อ
+          </p>
+          <div class="quote">"<span class="placeholder">ใส่คำคมหรือประโยคที่สะท้อนแรงบันดาลใจสู่เส้นทางนี้</span>"</div>
+          <div class="rec-no">REC. NO. 2569-001 &nbsp;·&nbsp; STATUS: FOR REVIEW</div>
+        </div>
+
+        <!--
+          ══════════════════════════════════════════════════
+          📸 [ใส่รูปภาพตรงนี้] รูปโปรไฟล์หน้าปก (แนวตั้ง สัดส่วน 3:4)
+          วิธีใส่รูป: ลบ src ด้านล่างออก แล้วใส่ลิงก์รูปของคุณแทน
+          เช่น src="รูปของฉัน.jpg" (ถ้าอัปโหลดไฟล์รูปไว้โฟลเดอร์เดียวกับ index.html)
+          หรือ src="https://ลิงก์รูปของคุณ.jpg"
+          ══════════════════════════════════════════════════
+        -->
+        <div class="photo-frame">
+          <img src="https://placehold.co/280x373/EAEDE7/56635F?text=รูปโปรไฟล์" alt="รูปโปรไฟล์">
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 ประวัติการศึกษา -->
+    <section class="slide" data-index="1">
+      <div class="eyebrow">Section 02</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>
+        <h1 class="slide-title">ประวัติการศึกษา</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><polyline points="0,13 50,13 65,13 74,4 83,22 92,13 120,13 170,13 185,13 194,4 203,22 212,13 240,13 290,13 305,13 314,4 323,22 332,13 420,13"/></svg>
+
+      <!-- ✏️ [แก้ไขข้อความ] ตารางประวัติการศึกษา — แก้ชื่อโรงเรียนและเกรดเฉลี่ยในแต่ละ <td> -->
+      <table class="edu">
+        <thead><tr><th>ระดับการศึกษา</th><th>สถานศึกษา</th><th>เกรดเฉลี่ย</th></tr></thead>
+        <tbody>
+          <tr><td>มัธยมศึกษาตอนปลาย</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
+          <tr><td>มัธยมศึกษาตอนต้น</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
+        </tbody>
+      </table>
+      <div class="grid2" style="margin-top:24px;">
+        <div class="field"><div class="label">แผนการเรียน</div><div class="value placeholder">เช่น วิทย์-คณิต</div></div>
+        <div class="field"><div class="label">ผลสอบมาตรฐาน</div><div class="value placeholder">TGAT / TPAT1 / A-Level ฯลฯ</div></div>
+      </div>
+    </section>
+
+    <!-- 03 ประวัติส่วนตัว -->
+    <section class="slide" data-index="2">
+      <div class="eyebrow">Section 03</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        <h1 class="slide-title">ประวัติส่วนตัว</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><polyline points="0,13 50,13 65,13 74,4 83,22 92,13 120,13 170,13 185,13 194,4 203,22 212,13 240,13 290,13 305,13 314,4 323,22 332,13 420,13"/></svg>
+
+      <div style="display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
+        <!--
+          📸 [ใส่รูปภาพตรงนี้] รูปติดบัตรทางการ (สัดส่วน 4:5) — วิธีใส่เหมือนรูปหน้าปก
+        -->
+        <div class="id-photo">
+          <img src="https://placehold.co/240x300/EAEDE7/56635F?text=รูปติดบัตร" alt="รูปติดบัตร">
+        </div>
+
+        <!-- ✏️ [แก้ไขข้อความ] ข้อมูลส่วนตัวแต่ละช่อง -->
+        <div class="grid2" style="flex:1; min-width:280px;">
+          <div class="field"><div class="label">ชื่อ-นามสกุล</div><div class="value placeholder">ชื่อ นามสกุล</div></div>
+          <div class="field"><div class="label">ชื่อเล่น</div><div class="value placeholder">ชื่อเล่น</div></div>
+          <div class="field"><div class="label">วัน/เดือน/ปีเกิด</div><div class="value placeholder">DD/MM/YYYY</div></div>
+          <div class="field"><div class="label">ที่อยู่</div><div class="value placeholder">จังหวัด</div></div>
+          <div class="field"><div class="label">อีเมล</div><div class="value placeholder">example@email.com</div></div>
+          <div class="field"><div class="label">โทรศัพท์</div><div class="value placeholder">08x-xxx-xxxx</div></div>
+        </div>
+      </div>
+      <p class="soft placeholder" style="margin-top:24px;">เขียนแนะนำตัวสั้นๆ จุดแข็ง บุคลิก หรือแรงบันดาลใจที่ทำให้อยากเป็นแพทย์</p>
+    </section>
+
+    <!-- 04 กิจกรรม -->
+    <section class="slide" data-index="3">
+      <div class="eyebrow">Section 04</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/></svg>
+        <h1 class="slide-title">กิจกรรมที่เข้าร่วม</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><polyline points="0,13 50,13 65,13 74,4 83,22 92,13 120,13 170,13 185,13 194,4 203,22 212,13 240,13 290,13 305,13 314,4 323,22 332,13 420,13"/></svg>
+
+      <!--
+        📸 [ใส่รูปภาพตรงนี้] แต่ละกิจกรรมมีรูปเล็กเป็นหลักฐาน (สี่เหลี่ยมจัตุรัส)
+        ✏️ [แก้ไขข้อความ] ปี, ชื่อกิจกรรม, รายละเอียด — ทำซ้ำแพทเทิร์นเดียวกันนี้เพื่อเพิ่ม/แก้แต่ละรายการ
+      -->
+      <ul class="activity-list">
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAEDE7/56635F?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2567</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAEDE7/56635F?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2566</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAEDE7/56635F?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2565</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 05 ความสนใจศึกษาต่อ -->
+    <section class="slide" data-index="4">
+      <div class="eyebrow">Section 05</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+        <h1 class="slide-title">ความสนใจในการศึกษาต่อ</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><polyline points="0,13 50,13 65,13 74,4 83,22 92,13 120,13 170,13 185,13 194,4 203,22 212,13 240,13 290,13 305,13 314,4 323,22 332,13 420,13"/></svg>
+
+      <!-- ✏️ [แก้ไขข้อความ] คณะที่สนใจ เหตุผล และเป้าหมาย -->
+      <div class="interest-card">
+        <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+        <p class="soft placeholder">เหตุผลที่สนใจสาขานี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+      </div>
+      <p class="placeholder">เป้าหมายในอนาคตหลังจบการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น</p>
+    </section>
+
+  </div>
+
+  <div class="nav-float">
+    <div class="count" id="count">01 / 05</div>
+    <button id="prevBtn" aria-label="ก่อนหน้า">&#8592;</button>
+    <button id="nextBtn" aria-label="ถัดไป">&#8594;</button>
+  </div>
 </div>
-<!-- กล่องผลงานชิ้นที่ 2 -->
-<div class="project-card">
-<h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3>
-<p>รายละเอียดชิ้นงาน : เข้าร่วมการประกวด หรือกิจกรรมของโรงเรียน...</p>
-</div>
-<!-- กล่องผลงานชิ้นที่ 3 -->
-<div class="project-card">
-<h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3>
-<p>รายละเอียดชิ้นงาน : เข้าร่วมการประกวด หรือกิจกรรมของโรงเรียน...</p>
-</div>
-<!-- ปุ่มกดกลับหน้าแรก -->
-<a href="index.html" class="btn"> กลับหน้าแรก</a>
-</div>
+
+<script>
+const sections = [
+  { label: "คำนำ", icon: `<polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/>` },
+  { label: "ประวัติการศึกษา", icon: `<rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/>` },
+  { label: "ประวัติส่วนตัว", icon: `<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>` },
+  { label: "กิจกรรม", icon: `<polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/>` },
+  { label: "ความสนใจศึกษาต่อ", icon: `<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/>` },
+];
+
+const tabsEl = document.getElementById('tabs');
+const slides = document.querySelectorAll('.slide');
+const countEl = document.getElementById('count');
+const progressFill = document.getElementById('progressFill');
+let current = 0;
+
+sections.forEach((s, i) => {
+  const tab = document.createElement('div');
+  tab.className = 'tab';
+  tab.innerHTML = `<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${s.icon}</svg><div class="blip"></div></div><span>${s.label}</span>`;
+  tab.addEventListener('click', () => goTo(i));
+  tabsEl.appendChild(tab);
+});
+
+function goTo(i){
+  current = Math.max(0, Math.min(sections.length - 1, i));
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+  [...tabsEl.children].forEach((t, idx) => t.classList.toggle('active', idx === current));
+  countEl.textContent = String(current+1).padStart(2,'0') + " / " + String(sections.length).padStart(2,'0');
+  progressFill.style.width = ((current+1)/sections.length*100) + '%';
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') goTo(current + 1);
+  if (e.key === 'ArrowLeft') goTo(current - 1);
+});
+
+let touchStartX = 0;
+document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+});
+
+goTo(0);
+</script>
 </body>
 </html>
