@@ -41,6 +41,19 @@
     height:70px;
     border-bottom:1px solid rgba(245,246,242,0.08);
   }
+  .back-link{
+    flex-shrink:0;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid rgba(245,246,242,0.16);
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(245,246,242,0.6);
+    text-decoration:none;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .back-link svg{ width:15px; height:15px; stroke:currentColor; }
+  .back-link:hover{ background:var(--crimson); color:var(--paper); border-color:var(--crimson); }
+
   .brand{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
   .brand svg{ width:18px; height:18px; stroke:var(--crimson); }
   .brand span{ font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.14em; color:rgba(245,246,242,0.55); }
@@ -238,6 +251,9 @@
 <div class="app">
 
   <header class="topbar">
+    <a href="index.html" class="back-link" aria-label="กลับไปหน้าแนะนำตัว" title="กลับไปหน้าแนะนำตัว">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
     <div class="brand" id="brandHome" style="cursor:pointer;">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/></svg>
       <span>PORTFOLIO</span>
