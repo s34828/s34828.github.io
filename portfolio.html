@@ -214,7 +214,7 @@
   /* ===== FLOATING NAV (มุมล่างขวา) ===== */
   .nav-float{ position:absolute; bottom:22px; right:26px; z-index:6; display:flex; align-items:center; gap:12px; }
   .nav-float .count{ font-family:'Space Mono', monospace; font-size:11.5px; color:var(--ink-soft); }
-  .nav-float button{ width:34px; height:34px; border:1px solid var(--line); background:var(--paper); color:var(--teal-dark); cursor:pointer; font-size:14px; border-radius:50%; transition:background .2s, color .2s; box-shadow:0 2px 8px rgba(22,35,43,0.06); }
+  .nav-float button{ width:34px; height:34px; border:1px solid var(--line); background:var(--paper); color:var(--teal-dark); cursor:pointer; font-size:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s; box-shadow:0 2px 8px rgba(22,35,43,0.06); }
   .nav-float button:hover{ background:var(--teal); color:var(--paper); }
 
   @media (max-width:760px){
@@ -238,7 +238,7 @@
 <div class="app">
 
   <header class="topbar">
-    <div class="brand">
+    <div class="brand" id="brandHome" style="cursor:pointer;">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/></svg>
       <span>PORTFOLIO</span>
     </div>
@@ -422,6 +422,12 @@
 
   <div class="nav-float">
     <div class="count" id="count">01 / 05</div>
+    <button id="homeBtn" aria-label="กลับหน้าแรก">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
+        <polyline points="3,11 12,4 21,11"/>
+        <path d="M5,10 V19 H19 V10"/>
+      </svg>
+    </button>
     <button id="prevBtn" aria-label="ก่อนหน้า">&#8592;</button>
     <button id="nextBtn" aria-label="ถัดไป">&#8594;</button>
   </div>
@@ -458,6 +464,8 @@ function goTo(i){
   progressFill.style.width = ((current+1)/sections.length*100) + '%';
 }
 
+document.getElementById('homeBtn').addEventListener('click', () => goTo(0));
+document.getElementById('brandHome').addEventListener('click', () => goTo(0));
 document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
 document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
 document.addEventListener('keydown', (e) => {
