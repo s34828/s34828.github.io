@@ -1,0 +1,130 @@
+// ===== รายชื่อหน้าทั้งหมด (แต่ละหน้าเป็นไฟล์ .html จริง แยกกัน) =====
+const PAGES = [
+  { file: "index.html",      label: "คำนำ",                icon: `<polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/>` },
+  { file: "education.html",  label: "ประวัติการศึกษา",       icon: `<rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/>` },
+  { file: "profile.html",    label: "ประวัติส่วนตัว",        icon: `<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>` },
+  { file: "activities.html", label: "กิจกรรม",              icon: `<polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/>` },
+  { file: "interests.html",  label: "ความสนใจศึกษาต่อ",      icon: `<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/>` },
+];
+const SITE_NAME = "พอร์ตฟอลิโอ";
+
+// หาว่าไฟล์ปัจจุบันคือหน้าไหนใน PAGES (รองรับทั้ง "" และ "index.html" ว่าคือหน้าแรก)
+function currentFile(){
+  let f = location.pathname.split('/').pop();
+  if (!f) f = "index.html";
+  return f;
+}
+function currentIndex(){
+  const f = currentFile();
+  const idx = PAGES.findIndex(p => p.file === f);
+  return idx >= 0 ? idx : 0;
+}
+
+const current = currentIndex();
+
+// ตั้งชื่อแท็บ/หน้าต่างเบราว์เซอร์ให้ตรงกับหน้าที่เปิดอยู่เสมอ
+document.title = SITE_NAME + " | " + PAGES[current].label;
+
+// ===== สร้างแถบเมนูด้านบน (แต่ละแท็บลิงก์ไปหน้าไฟล์จริง) =====
+const tabsEl = document.getElementById('tabs');
+if (tabsEl) {
+  PAGES.forEach((p, i) => {
+    const tab = document.createElement('a');
+    tab.className = 'tab' + (i === current ? ' active' : '');
+    tab.href = p.file;
+    tab.innerHTML = `<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${p.icon}</svg><div class="blip"></div></div><span>${p.label}</span>`;
+    tabsEl.appendChild(tab);
+  });
+}
+
+// ===== ตัวนับหน้า + แถบความคืบหน้า =====
+const countEl = document.getElementById('count');
+if (countEl) countEl.textContent = String(current + 1).padStart(2, '0') + " / " + String(PAGES.length).padStart(2, '0');
+const progressFill = document.getElementById('progressFill');
+if (progressFill) progressFill.style.width = ((current + 1) / PAGES.length * 100) + '%';
+
+// ===== ปุ่มก่อนหน้า/ถัดไป (ลิงก์ไปไฟล์จริง) =====
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+if (prevBtn) {
+  if (current > 0) { prevBtn.href = PAGES[current - 1].file; }
+  else { prevBtn.classList.add('disabled'); prevBtn.removeAttribute('href'); }
+}
+if (nextBtn) {
+  if (current < PAGES.length - 1) { nextBtn.href = PAGES[current + 1].file; }
+  else { nextBtn.classList.add('disabled'); nextBtn.removeAttribute('href'); }
+}
+
+// ===== ปุ่มลูกศรซ้าย/ขวาบนคีย์บอร์ด สลับหน้าจริง =====
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' && current < PAGES.length - 1) location.href = PAGES[current + 1].file;
+  if (e.key === 'ArrowLeft' && current > 0) location.href = PAGES[current - 1].file;
+});
+
+// ===== ปัดซ้าย/ขวาบนมือถือ สลับหน้าจริง =====
+let touchStartX = 0;
+document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    if (dx < 0 && current < PAGES.length - 1) location.href = PAGES[current + 1].file;
+    if (dx > 0 && current > 0) location.href = PAGES[current - 1].file;
+  }
+});
+
+// ===== LIGHTBOX: กดดูรูปกิจกรรม (มีกรอบข้อมูลด้านล่าง) / รูปคณะที่สนใจศึกษาต่อ =====
+const lightbox = document.getElementById('lightbox');
+if (lightbox) {
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxDate = document.getElementById('lightboxDate');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+
+  function openLightbox(src, alt, caption){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || 'รูปขยาย';
+    if (caption) {
+      lightboxDate.textContent = caption.date || '';
+      lightboxDate.style.display = caption.date ? '' : 'none';
+      lightboxTitle.textContent = caption.title || '';
+      lightboxDesc.textContent = caption.desc || '';
+      lightboxCaption.style.display = 'block';
+    } else {
+      lightboxCaption.style.display = 'none';
+    }
+    lightbox.classList.add('open');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  // รูปในหน้ากิจกรรม: กดแล้วโชว์กรอบข้อมูล (ปี/ชื่อกิจกรรม/รายละเอียด) ด้านล่างรูป
+  document.querySelectorAll('.activity-item').forEach(item => {
+    const img = item.querySelector('.activity-thumb img');
+    if (!img) return;
+    const dateEl = item.querySelector('.date');
+    const titleEl = item.querySelector('.title');
+    const descEl = item.querySelector('.soft');
+    img.addEventListener('click', () => openLightbox(
+      img.getAttribute('src'),
+      img.getAttribute('alt'),
+      {
+        date: dateEl ? dateEl.textContent.trim() : '',
+        title: titleEl ? titleEl.textContent.trim() : '',
+        desc: descEl ? descEl.textContent.trim() : ''
+      }
+    ));
+  });
+
+  // รูปคณะ/มหาวิทยาลัยที่สนใจ: กดดูรูปขยายได้ (ไม่มีกรอบข้อความ)
+  document.querySelectorAll('.uni-photo img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.getAttribute('src'), img.getAttribute('alt')));
+  });
+
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+}
