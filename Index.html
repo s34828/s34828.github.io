@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พอร์ตฟอลิโอ | คำนำ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <a href="index.html" class="back-link" aria-label="กลับไปหน้าแนะนำตัว" title="กลับไปหน้าแนะนำตัว">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/></svg>
+      <span>PORTFOLIO</span>
+    </a>
+    <nav class="nav-tabs" id="tabs"></nav>
+    <div class="rec-tag">REC. NO. 2569-001</div>
+  </header>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="stage">
+    <div class="page-content">
+
+      <div class="cover">
+        <div class="cover-text">
+          <div class="eyebrow">Portfolio · Medical Track</div>
+          <svg class="pulse-hero" viewBox="0 0 420 44" preserveAspectRatio="none">
+            <polyline points="0,22 50,22 68,22 78,6 88,38 98,22 130,22 180,22 198,22 208,6 218,38 228,22 260,22 310,22 328,22 338,6 348,38 358,22 420,22"/>
+          </svg>
+
+          <!-- ✏️ [แก้ไขข้อความ] ชื่อ-นามสกุล และคณะที่ต้องการสมัคร -->
+          <div class="name">นายเตชินท์ เตียวิบูลย์</div>
+          <div class="goal">ผู้สมัครเข้าศึกษาต่อคณะ <span class="placeholder">[แพทยศาสตร์ /  ฯลฯ]</span></div>
+
+          <!-- ✏️ [แก้ไขข้อความ] คำโปรยแนะนำตัวสั้นๆ -->
+          <p class="soft" style="margin-bottom:16px;">
+            แฟ้มสะสมผลงานฉบับนี้รวบรวมประวัติการศึกษา ประวัติส่วนตัว กิจกรรม
+            และความมุ่งมั่นในการเดินสู่เส้นทางวิชาชีพแพทย์ เพื่อประกอบการพิจารณาเข้าศึกษาต่อ
+          </p>
+          <div class="quote">"<span class="placeholder">จงสนุกกับเส้นทางนั้นเถอะ สนุกให้เยอะๆเลย
+          สิ่งที่สำคัญกว่าสิ่งที่ต้องการน่ะ มันต้องอยู่ระหว่างทางนั้นแน่ๆ</span>"</div>
+          <div class="rec-no">REC. NO. 2569-001 &nbsp;·&nbsp; STATUS: FOR REVIEW</div>
+        </div>
+
+        <!--
+          ══════════════════════════════════════════════════
+          📸 [ใส่รูปภาพตรงนี้] รูปโปรไฟล์หน้าปก (แนวตั้ง สัดส่วน 3:4)
+          วิธีใส่รูป: ลบ src ด้านล่างออก แล้วใส่ลิงก์รูปของคุณแทน
+          เช่น src="รูปของฉัน.jpg" (ถ้าอัปโหลดไฟล์รูปไว้โฟลเดอร์เดียวกับ index.html)
+          หรือ src="https://ลิงก์รูปของคุณ.jpg"
+          ══════════════════════════════════════════════════
+        -->
+        <div class="photo-frame">
+          <img src="IMG_7964.jpeg" alt="รูปโปรไฟล์">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="nav-float">
+    <div class="count" id="count">01 / 05</div>
+    <a href="index.html" class="nav-btn" aria-label="กลับหน้าแรก">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
+        <polyline points="3,11 12,4 21,11"/>
+        <path d="M5,10 V19 H19 V10"/>
+      </svg>
+    </a>
+    <a id="prevBtn" class="nav-btn" aria-label="ก่อนหน้า">&#8592;</a>
+    <a id="nextBtn" class="nav-btn" aria-label="ถัดไป">&#8594;</a>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
