@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พอร์ตฟอลิโอ | ประวัติการศึกษา</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <a href="index.html" class="back-link" aria-label="กลับไปหน้าแนะนำตัว" title="กลับไปหน้าแนะนำตัว">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+    <a href="index.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/></svg>
+      <span>PORTFOLIO</span>
+    </a>
+    <nav class="nav-tabs" id="tabs"></nav>
+    <div class="rec-tag">REC. NO. 2569-001</div>
+  </header>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="stage">
+    <div class="page-content">
+
+      <div class="eyebrow">Section 02</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>
+        <h1 class="slide-title">ประวัติการศึกษา</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><polyline points="0,13 50,13 65,13 74,4 83,22 92,13 120,13 170,13 185,13 194,4 203,22 212,13 240,13 290,13 305,13 314,4 323,22 332,13 420,13"/></svg>
+
+      <!-- ✏️ [แก้ไขข้อความ] ตารางประวัติการศึกษา — แก้ชื่อโรงเรียนและเกรดเฉลี่ยในแต่ละ <td> -->
+      <table class="edu">
+        <thead><tr><th>ระดับการศึกษา</th><th>สถานศึกษา</th><th>เกรดเฉลี่ย</th></tr></thead>
+        <tbody>
+          <tr><td>มัธยมศึกษาตอนปลาย</td><td class="placeholder">โรงเรียนบ้านบึง"อุตสาหกรรมนุเคราะห์นุเคราะห์"</td><td class="placeholder">3.90</td></tr>
+          <tr><td>มัธยมศึกษาตอนต้น</td><td class="placeholder">โรงเรียนบ้านบึง"อุตสาหกรรมนุเคราะห์นุเคราะห์"</td><td class="placeholder">3.89</td></tr>
+          <tr><td>ประถมศึกษา</td><td class="placeholder">โรงเรียนวัฒนดรุนวิทย์</td><td class="placeholder">3.67</td></tr>
+        </tbody>
+      </table>
+      <div class="field" style="margin-top:24px; max-width:320px;">
+        <div class="label">แผนการเรียน</div><div class="value placeholder"> วิทย์-คณิต(Gifted)</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="nav-float">
+    <div class="count" id="count">02 / 05</div>
+    <a href="index.html" class="nav-btn" aria-label="กลับหน้าแรก">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
+        <polyline points="3,11 12,4 21,11"/>
+        <path d="M5,10 V19 H19 V10"/>
+      </svg>
+    </a>
+    <a id="prevBtn" class="nav-btn" aria-label="ก่อนหน้า">&#8592;</a>
+    <a id="nextBtn" class="nav-btn" aria-label="ถัดไป">&#8594;</a>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
