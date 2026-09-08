@@ -230,6 +230,38 @@
   .nav-float button{ width:34px; height:34px; border:1px solid var(--line); background:var(--paper); color:var(--teal-dark); cursor:pointer; font-size:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s; box-shadow:0 2px 8px rgba(22,35,43,0.06); }
   .nav-float button:hover{ background:var(--teal); color:var(--paper); }
 
+  /* ===== LIGHTBOX รูปภาพ ===== */
+  .activity-thumb, .uni-photo{ cursor:zoom-in; position:relative; }
+  .activity-thumb::after, .uni-photo::after{
+    content:"⤢"; position:absolute; bottom:2px; right:2px;
+    width:16px; height:16px; border-radius:50%;
+    background:rgba(22,35,43,0.55); color:#fff;
+    font-size:10px; display:flex; align-items:center; justify-content:center;
+    line-height:1; pointer-events:none;
+  }
+  .lightbox-overlay{
+    position:fixed; inset:0; z-index:50;
+    background:rgba(15,22,26,0.88);
+    display:none; align-items:center; justify-content:center;
+    padding:40px; cursor:zoom-out;
+  }
+  .lightbox-overlay.open{ display:flex; }
+  .lightbox-overlay img{
+    max-width:100%; max-height:100%;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    border:2px solid rgba(245,246,242,0.15);
+    cursor:default;
+  }
+  .lightbox-close{
+    position:absolute; top:20px; right:24px;
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid rgba(245,246,242,0.3);
+    background:rgba(245,246,242,0.08); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:18px;
+  }
+  .lightbox-close:hover{ background:var(--crimson); border-color:var(--crimson); }
+
   @media (max-width:760px){
     .topbar{ padding:0 14px; gap:10px; }
     .brand span, .rec-tag{ display:none; }
@@ -458,6 +490,11 @@
     <button id="prevBtn" aria-label="ก่อนหน้า">&#8592;</button>
     <button id="nextBtn" aria-label="ถัดไป">&#8594;</button>
   </div>
+
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-close" id="lightboxClose">&times;</div>
+    <img id="lightboxImg" src="" alt="รูปขยาย">
+  </div>
 </div>
 
 <script>
@@ -489,6 +526,7 @@ function goTo(i){
   [...tabsEl.children].forEach((t, idx) => t.classList.toggle('active', idx === current));
   countEl.textContent = String(current+1).padStart(2,'0') + " / " + String(sections.length).padStart(2,'0');
   progressFill.style.width = ((current+1)/sections.length*100) + '%';
+  document.title = "พอร์ตฟอลิโอ | " + sections[current].label;
 }
 
 document.getElementById('homeBtn').addEventListener('click', () => goTo(0));
@@ -508,6 +546,29 @@ document.addEventListener('touchend', e => {
 });
 
 goTo(0);
+
+/* ===== LIGHTBOX: กดดูรูปกิจกรรม / รูปคณะที่สนใจศึกษาต่อ ===== */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+function openLightbox(src, alt){
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || 'รูปขยาย';
+  lightbox.classList.add('open');
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+}
+
+document.querySelectorAll('.activity-thumb img, .uni-photo img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.getAttribute('src'), img.getAttribute('alt')));
+});
+
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+lightboxClose.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 </body>
 </html>
