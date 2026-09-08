@@ -1,0 +1,288 @@
+:root{
+  --paper:#F5F6F2;
+  --paper-panel:#EAEDE7;
+  --ink:#16232B;
+  --ink-soft:#3D4844;
+  --crimson:#96263A;
+  --crimson-wash:rgba(150,38,58,0.10);
+  --teal:#2C6259;
+  --teal-dark:#153730;
+  --line:#D7DBD3;
+  --radius:2px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--teal-dark);
+  color:var(--ink);
+  font-family:'Noto Sans Thai', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+.app{ display:flex; flex-direction:column; height:100vh; width:100vw; position:relative; }
+
+/* ===== TOP BAR — เมนูหัวข้อ ===== */
+.topbar{
+  flex-shrink:0;
+  background:var(--teal-dark);
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:0 22px;
+  height:70px;
+  border-bottom:1px solid rgba(245,246,242,0.08);
+}
+.back-link{
+  flex-shrink:0;
+  width:34px; height:34px;
+  border-radius:50%;
+  border:1px solid rgba(245,246,242,0.16);
+  display:flex; align-items:center; justify-content:center;
+  color:rgba(245,246,242,0.6);
+  text-decoration:none;
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
+}
+.back-link svg{ width:15px; height:15px; stroke:currentColor; }
+.back-link:hover{ background:var(--crimson); color:var(--paper); border-color:var(--crimson); }
+
+.brand{ display:flex; align-items:center; gap:8px; flex-shrink:0; text-decoration:none; cursor:pointer; }
+.brand svg{ width:18px; height:18px; stroke:var(--crimson); }
+.brand span{ font-family:'Space Mono', monospace; font-size:11px; letter-spacing:.14em; color:rgba(245,246,242,0.55); }
+
+.nav-tabs{
+  display:flex;
+  gap:4px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  flex:1;
+  height:100%;
+}
+.nav-tabs::-webkit-scrollbar{ display:none; }
+.tab{
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:0 16px;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  position:relative;
+  transition:border-color .2s ease;
+  text-decoration:none;
+}
+.tab .icon{ position:relative; }
+.tab .icon svg{ width:16px; height:16px; stroke:rgba(245,246,242,0.45); transition:stroke .2s ease; }
+.tab .blip{
+  position:absolute; top:-3px; right:-5px;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--crimson);
+  opacity:0;
+  animation:blip 1.6s ease-in-out infinite;
+}
+.tab span{ font-size:11.5px; letter-spacing:.03em; color:rgba(245,246,242,0.55); white-space:nowrap; transition:color .2s ease; }
+.tab.active{ border-bottom-color:var(--crimson); }
+.tab.active .icon svg{ stroke:var(--crimson); }
+.tab.active span{ color:var(--paper); font-weight:600; }
+.tab.active .blip{ opacity:1; }
+.tab:hover span{ color:var(--paper); }
+@keyframes blip{ 0%,100%{opacity:.3; transform:scale(.8);} 50%{opacity:1; transform:scale(1.2);} }
+
+.rec-tag{ font-family:'Space Mono', monospace; font-size:10.5px; color:rgba(245,246,242,0.4); letter-spacing:.04em; flex-shrink:0; }
+
+.progress-track{ height:3px; background:rgba(245,246,242,0.08); flex-shrink:0; }
+.progress-fill{ height:100%; background:var(--crimson); width:20%; transition:width .4s ease; }
+
+/* ===== MAIN STAGE (แต่ละหน้า = ไฟล์จริงแยกกัน) ===== */
+.stage{
+  flex:1;
+  position:relative;
+  background:
+    repeating-linear-gradient(to bottom, transparent, transparent 27px, rgba(22,35,43,0.04) 27px, rgba(22,35,43,0.04) 28px),
+    var(--paper);
+  overflow-y:auto;
+}
+.page-content{
+  padding:44px 64px 90px;
+  min-height:100%;
+  animation: fadeInUp .45s ease;
+}
+@keyframes fadeInUp{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:translateY(0); } }
+
+.eyebrow{
+  font-family:'Space Mono', monospace;
+  font-size:11.5px; letter-spacing:.14em; color:var(--crimson);
+  text-transform:uppercase;
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+}
+.eyebrow::before{ content:""; width:22px; height:1px; background:var(--crimson); }
+
+.title-row{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+.title-row svg{ width:26px; height:26px; stroke:var(--teal); flex-shrink:0; }
+h1.slide-title{
+  font-family:'Noto Serif Thai', serif;
+  font-weight:700;
+  font-size:clamp(24px, 3.4vw, 38px);
+  color:var(--teal-dark);
+  line-height:1.25;
+}
+.ecg-divider{ width:100%; max-width:420px; height:24px; margin:6px 0 24px; }
+.ecg-divider polyline{ fill:none; stroke:var(--crimson); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; opacity:.7; }
+
+p, li{ color:var(--ink); font-size:16px; font-weight:500; line-height:1.8; }
+.soft{ color:var(--ink-soft); font-weight:500; }
+.placeholder{ color:#7C877F; font-style:italic; font-weight:500; }
+
+/* ===== COVER ===== */
+.cover{ height:100%; display:flex; align-items:center; gap:48px; }
+.cover-text{ max-width:520px; flex-shrink:1; }
+.cover .name{
+  font-family:'Noto Serif Thai', serif; font-weight:700;
+  font-size:clamp(28px, 4vw, 46px);
+  color:var(--teal-dark); line-height:1.2; margin:8px 0 6px;
+}
+.cover .goal{ font-size:17px; color:var(--ink-soft); margin-bottom:18px; }
+.cover .pulse-hero{ width:100%; max-width:420px; height:44px; margin-bottom:18px; }
+.cover .pulse-hero polyline{
+  fill:none; stroke:var(--crimson); stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:2400; stroke-dashoffset:2400;
+  animation:draw 1.8s ease-out .3s forwards;
+}
+@keyframes draw{ to{ stroke-dashoffset:0; } }
+.cover .quote{ border-left:3px solid var(--teal); padding-left:18px; font-family:'Noto Serif Thai', serif; font-size:15.5px; color:var(--ink-soft); font-style:italic; }
+.rec-no{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); margin-top:22px; letter-spacing:.04em; }
+
+/* กรอบรูปโปรไฟล์หน้าปก แบบ "แปะเทป" ติดแฟ้ม */
+.photo-frame{
+  flex-shrink:0;
+  width:216px; aspect-ratio:3/4;
+  background:#fff;
+  padding:8px;
+  border:1px solid var(--line);
+  box-shadow:0 10px 26px rgba(21,55,48,0.14);
+  transform:rotate(-3deg);
+  position:relative;
+}
+.photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+.photo-frame::before, .photo-frame::after{
+  content:""; position:absolute; top:-9px; width:34px; height:13px;
+  background:rgba(234,237,231,0.92); border:1px solid var(--line);
+}
+.photo-frame::before{ left:12px; transform:rotate(-8deg); }
+.photo-frame::after{ right:12px; transform:rotate(6deg); }
+
+/* กรอบรูปติดบัตรทางการ (ใช้หน้าประวัติส่วนตัว) */
+.id-photo{
+  width:120px; height:150px;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:5px;
+  flex-shrink:0;
+}
+.id-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ===== GRID / CARD HELPERS ===== */
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:20px 32px; }
+.field{ border-bottom:1px solid var(--line); padding-bottom:10px; }
+.field .label{ font-family:'Space Mono', monospace; font-size:10.5px; color:var(--ink-soft); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px; font-weight:600; }
+.field .value{ font-size:16px; font-weight:600; }
+
+table.edu{ width:100%; border-collapse:collapse; margin-top:8px; }
+table.edu th, table.edu td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); font-size:15px; font-weight:500; }
+table.edu th{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:600; border-top:2px solid var(--teal); }
+
+.activity-list{ list-style:none; margin-top:8px; }
+.activity-item{ display:grid; grid-template-columns:56px 90px 1fr; align-items:center; gap:16px; padding:14px 10px; border-bottom:1px solid var(--line); border-radius:var(--radius); transition:background .2s ease; }
+.activity-item:hover{ background:var(--paper-panel); }
+.activity-thumb{ width:56px; height:56px; border:1px solid var(--line); background:#fff; padding:3px; }
+.activity-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.activity-item .date{ font-family:'Space Mono', monospace; font-size:12px; color:var(--crimson); display:flex; align-items:center; gap:6px; }
+.activity-item .date::before{ content:"+"; font-weight:700; }
+.activity-item .title{ font-weight:600; margin-bottom:3px; }
+
+.interest-card{ background:var(--paper-panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:var(--radius); padding:22px 24px; margin-bottom:16px; box-shadow:0 2px 10px rgba(22,35,43,0.04); }
+.interest-card .major{ font-family:'Noto Serif Thai', serif; font-weight:600; font-size:19px; color:var(--teal-dark); margin-bottom:6px; }
+
+/* การ์ดอันดับคณะ/มหาวิทยาลัย (3 อันดับ) */
+.uni-card{ display:flex; gap:18px; align-items:flex-start; background:var(--paper-panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px; box-shadow:0 2px 10px rgba(22,35,43,0.04); }
+.uni-rank{ width:30px; height:30px; border-radius:50%; border:1.5px solid var(--crimson); color:var(--crimson); font-family:'Space Mono', monospace; font-size:12.5px; font-weight:600; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.uni-photo{ width:128px; height:92px; flex-shrink:0; border:1px solid var(--line); background:#fff; padding:4px; }
+.uni-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.uni-info{ flex:1; min-width:160px; }
+.uni-info .major{ font-family:'Noto Serif Thai', serif; font-weight:600; font-size:18px; color:var(--teal-dark); margin-bottom:2px; }
+.uni-info .uni-name{ font-family:'Space Mono', monospace; font-size:11.5px; color:var(--crimson); letter-spacing:.04em; margin-bottom:6px; font-weight:600; }
+
+/* ===== FLOATING NAV (มุมล่างขวา) ===== */
+.nav-float{ position:absolute; bottom:22px; right:26px; z-index:6; display:flex; align-items:center; gap:12px; }
+.nav-float .count{ font-family:'Space Mono', monospace; font-size:11.5px; color:var(--ink-soft); }
+.nav-float a.nav-btn{ width:34px; height:34px; border:1px solid var(--line); background:var(--paper); color:var(--teal-dark); cursor:pointer; font-size:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s; box-shadow:0 2px 8px rgba(22,35,43,0.06); text-decoration:none; }
+.nav-float a.nav-btn:hover{ background:var(--teal); color:var(--paper); }
+.nav-float a.nav-btn.disabled{ opacity:.35; pointer-events:none; }
+
+/* ===== LIGHTBOX รูปภาพ ===== */
+.activity-thumb, .uni-photo{ cursor:zoom-in; position:relative; }
+.activity-thumb::after, .uni-photo::after{
+  content:"⤢"; position:absolute; bottom:2px; right:2px;
+  width:16px; height:16px; border-radius:50%;
+  background:rgba(22,35,43,0.55); color:#fff;
+  font-size:10px; display:flex; align-items:center; justify-content:center;
+  line-height:1; pointer-events:none;
+}
+.lightbox-overlay{
+  position:fixed; inset:0; z-index:50;
+  background:rgba(15,22,26,0.88);
+  display:none; align-items:center; justify-content:center;
+  padding:40px; cursor:zoom-out;
+}
+.lightbox-overlay.open{ display:flex; }
+.lightbox-body{
+  display:flex; flex-direction:column; align-items:center;
+  max-width:640px; max-height:100%; cursor:default;
+}
+.lightbox-overlay img{
+  max-width:100%; max-height:60vh;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  border:2px solid rgba(245,246,242,0.15);
+  cursor:default;
+  flex-shrink:1;
+}
+.lightbox-caption{
+  width:100%;
+  margin-top:16px;
+  background:var(--paper);
+  border-left:3px solid var(--crimson);
+  border-radius:var(--radius);
+  padding:16px 20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  max-height:30vh;
+  overflow-y:auto;
+}
+.lightbox-date{ font-family:'Space Mono', monospace; font-size:11.5px; color:var(--crimson); letter-spacing:.04em; display:flex; align-items:center; gap:6px; margin-bottom:4px; }
+.lightbox-date::before{ content:"+"; font-weight:700; }
+.lightbox-title{ font-family:'Noto Serif Thai', serif; font-weight:600; font-size:17px; color:var(--teal-dark); margin-bottom:6px; line-height:1.4; }
+.lightbox-desc{ font-size:14.5px; color:var(--ink-soft); font-weight:500; line-height:1.75; }
+.lightbox-close{
+  position:absolute; top:20px; right:24px;
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid rgba(245,246,242,0.3);
+  background:rgba(245,246,242,0.08); color:var(--paper);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:18px;
+}
+.lightbox-close:hover{ background:var(--crimson); border-color:var(--crimson); }
+
+@media (max-width:760px){
+  .topbar{ padding:0 14px; gap:10px; }
+  .brand span, .rec-tag{ display:none; }
+  .tab{ padding:0 11px; }
+  .tab span{ font-size:10.5px; }
+  .page-content{ padding:32px 20px 84px; }
+  .cover{ flex-direction:column-reverse; justify-content:center; gap:24px; text-align:left; }
+  .photo-frame{ width:150px; }
+  .grid2{ grid-template-columns:1fr; }
+  .activity-item{ grid-template-columns:44px 70px 1fr; gap:10px; }
+  .nav-float{ right:16px; bottom:16px; }
+  .uni-card{ flex-wrap:wrap; }
+  .uni-photo{ width:100px; height:74px; }
+}
