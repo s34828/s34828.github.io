@@ -40,14 +40,13 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 25px;
-            height: 60px; /* เพิ่มความสูง thanh bar */
+            height: 60px;
         }
 
-        /* จัดฝั่งซ้ายให้โลโก้ + เมนูอยู่ติดกัน */
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 25px; /* ระยะห่างระหว่างปุ่มย้อนกลับ โลโก้ และเมนู */
+            gap: 25px;
             height: 100%;
         }
 
@@ -67,7 +66,7 @@
             color: #72a99d;
             font-weight: 600;
             padding-right: 15px;
-            border-right: 1px solid rgba(255, 255, 255, 0.1); /* เส้นแบ่งเบาๆ */
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-menu {
@@ -87,26 +86,23 @@
             justify-content: center;
             color: #a3c2ba;
             text-decoration: none;
-            font-size: 13px; /* ปรับขนาดตัวหนังสือให้ใหญ่ขึ้น */
-            padding: 0 22px; /* เพิ่มระยะห่างปุ่ม */
+            font-size: 13px;
+            padding: 0 22px;
             height: 100%;
             transition: all 0.2s ease;
             position: relative;
         }
 
-        /* ปรับขนาดไอคอนบนเมนูให้ใหญ่ขึ้น */
         .nav-menu li a i {
             font-size: 18px; 
             margin-bottom: 3px;
         }
 
-        /* Hover Effect */
         .nav-menu li a:hover {
             color: #ffffff;
             background-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* เมนูที่ถูกเลือก (Active Tab) */
         .nav-menu li a.active {
             color: #ffffff;
             background-color: #173d36;
@@ -119,7 +115,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 4px; /* ความหนาของแถบสีแดง */
+            height: 4px;
             background-color: #cf3838;
         }
 
@@ -284,14 +280,15 @@
     <!-- NAVBAR ด้านบน -->
     <header>
         <div class="nav-left">
-            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+            <!-- ปรับให้ปุ่มย้อนกลับคงอยู่หน้าเดิมเนื่องจากเป็นหน้าแรก -->
+            <a href="javascript:void(0);" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
             <div class="brand">
                 <i class="fa-solid fa-heart-pulse"></i> PORTFOLIO
             </div>
 
-            <!-- เมนูย้ายมาชิดซ้ายแล้ว + กำหนดไฟล์ปลายทางที่ href -->
+            <!-- แก้ไข href ของ "คำนำ" ให้เป็น javascript:void(0); เพื่อคงอยู่หน้าเดิม -->
             <ul class="nav-menu">
-                <li><a href="index.html" class="active"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
+                <li><a href="javascript:void(0);" class="active"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
                 <li><a href="education.html"><i class="fa-solid fa-file-lines"></i> ประวัติการศึกษา</a></li>
                 <li><a href="profile.html"><i class="fa-solid fa-user"></i> ประวัติส่วนตัว</a></li>
                 <li><a href="activities.html"><i class="fa-solid fa-star"></i> กิจกรรม</a></li>
@@ -335,8 +332,9 @@
     <!-- FOOTER -->
     <footer>
         <span class="page-num">01 / 05</span>
-        <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i></a>
-        <a href="index.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <!-- แก้ไขปุ่ม Home และ Arrow-Left ให้กดแล้วอยู่หน้าเดิมเนื่องจากเป็นหน้าแรก -->
+        <a href="javascript:void(0);" class="nav-btn"><i class="fa-solid fa-house"></i></a>
+        <a href="javascript:void(0);" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
         <a href="education.html" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></a>
     </footer>
 
