@@ -169,48 +169,49 @@
             background-size: contain;
         }
 
-        /* Card List Layout */
+        /* --- Card Layout (ขยายรูปโลโก้ให้เห็นชัดเจน) --- */
         .university-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .uni-card {
             background: #eaeee8;
-            border-left: 3px solid #173d36;
-            border-radius: 2px;
-            padding: 16px 20px;
+            border-left: 4px solid #173d36;
+            border-radius: 6px;
+            padding: 20px 24px;
             display: flex;
             align-items: center;
-            gap: 20px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            gap: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .uni-num {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 700;
             color: #8c2a2a;
-            border: 1.5px solid #8c2a2a;
+            border: 2px solid #8c2a2a;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
+        /* ปรับเพิ่มขนาดช่องโลโก้ให้ใหญ่และชัดยิ่งขึ้น */
         .uni-logo {
-            width: 90px;
-            height: 90px;
+            width: 130px;
+            height: 130px;
             background: #ffffff;
-            border-radius: 4px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
             flex-shrink: 0;
         }
 
@@ -225,36 +226,36 @@
         }
 
         .uni-faculty {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #0f2b26;
-            font-style: italic;
             margin-bottom: 2px;
         }
 
         .uni-name {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 600;
             color: #8c2a2a;
-            font-style: italic;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .uni-reason {
-            font-size: 13.5px;
+            font-size: 14.5px;
             line-height: 1.6;
-            color: #384e48;
-            font-style: italic;
+            color: #2c423d;
             font-family: 'Sarabun', sans-serif;
         }
 
         /* Bottom Statement */
         .bottom-statement {
-            margin-top: 25px;
-            font-size: 13.5px;
+            margin-top: 30px;
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 18px 24px;
+            border: 1px solid #dcdfd8;
+            font-size: 14.5px;
             line-height: 1.6;
             color: #2c423d;
-            font-style: italic;
             font-family: 'Sarabun', sans-serif;
         }
 
@@ -330,7 +331,6 @@
             <div class="uni-card">
                 <div class="uni-num">01</div>
                 <div class="uni-logo">
-                    <!-- ใส่ URL รูปโลโก้ของมหาวิทยาลัย -->
                     <img src="IMG_8287.jpeg" alt="คณะแพทยศาสตร์ รามาธิบดี มหาวิทยาลัยมหิดล">
                 </div>
                 <div class="uni-details">
@@ -374,7 +374,8 @@
         </div>
 
         <div class="bottom-statement">
-            เป้าหมายในอนาคตหลังการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น หาก ผมได้เป็นแพทย์ตามที่หวัง ผมจะนำความรู้ที่มีรักษาคนไข้อย่างเต็มที่ เพื่อประโยชน์สุขของประชาชน
+            <strong>เป้าหมายในอนาคตหลังการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น:</strong><br>
+            หากผมได้เป็นแพทย์ตามที่หวัง ผมจะนำความรู้ที่มีรักษาคนไข้อย่างเต็มที่ เพื่อประโยชน์สุขของประชาชน
         </div>
     </main>
 
