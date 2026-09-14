@@ -160,85 +160,110 @@
         .ecg-line {
             width: 260px;
             height: 20px;
-            margin: 10px 0 25px 0;
+            margin: 10px 0 35px 0;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 50'%3E%3Cpath d='M0 25 L150 25 L160 10 L170 40 L180 0 L190 50 L200 20 L210 25 L500 25' stroke='%23cf3838' stroke-width='2' fill='none'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: contain;
         }
 
-        /* Activity List */
+        /* Activity List - ขยายขนาดใหญ่ตามตัวอย่าง */
         .activity-list {
             display: flex;
             flex-direction: column;
+            gap: 35px;
         }
 
         .activity-item {
             display: flex;
             align-items: flex-start;
-            gap: 20px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            gap: 35px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
         }
 
-        /* ปรับขนาดรูปภาพที่นี่ */
+        /* กรอบรูปภาพขนาดใหญ่สไตล์การ์ดภาพถ่าย */
         .activity-img-wrapper {
             position: relative;
-            width: 120px;
-            height: 90px;
+            width: 320px;
+            height: 210px;
             flex-shrink: 0;
             background: #ffffff;
-            border: 1px solid #dcdcdc;
-            padding: 3px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 8px solid #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-right: 15px; /* เว้นที่ให้แท็กปีขวา */
         }
 
         .activity-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 2px;
         }
 
         .zoom-icon {
             position: absolute;
-            bottom: 4px;
-            right: 4px;
-            background: rgba(15, 43, 38, 0.8);
+            bottom: 8px;
+            right: 8px;
+            background: rgba(15, 43, 38, 0.85);
             color: #fff;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 10px;
+            width: 26px;
+            height: 26px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
+        /* แท็กปี พ.ศ. แถบสีแดงลอยทับมุมขวาบนของรูป */
         .year-tag {
-            font-size: 12px;
+            position: absolute;
+            top: 15px;
+            right: -20px;
+            background: #cf3838;
+            color: #ffffff;
+            font-size: 13px;
             font-weight: 600;
-            color: #cf3838;
+            padding: 4px 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(207, 56, 56, 0.4);
             white-space: nowrap;
-            margin-top: 2px;
+            z-index: 2;
         }
 
         .activity-details {
             flex: 1;
+            padding-top: 5px;
         }
 
         .activity-title {
-            font-size: 14.5px;
-            font-weight: 600;
-            color: #173d36;
-            font-style: italic;
-            margin-bottom: 4px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f2b26;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .activity-desc {
-            font-size: 13.5px;
-            line-height: 1.6;
-            color: #4a635d;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2c443e;
             font-family: 'Sarabun', sans-serif;
-            font-style: italic;
+        }
+
+        /* Responsive สำหรับหน้าจอขนาดเล็ก */
+        @media (max-width: 768px) {
+            .activity-item {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .activity-img-wrapper {
+                width: 100%;
+                height: 220px;
+            }
         }
 
         /* --- FOOTER --- */
@@ -313,11 +338,11 @@
             <div class="activity-item">
                 <div class="activity-img-wrapper">
                     <img src="IMG_8286.jpeg" alt="กิจกรรมตอบปัญหาชีววิทยาการแพทย์">
+                    <div class="year-tag">+ 2567</div>
                     <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <div class="year-tag">+ 2567</div>
                 <div class="activity-details">
-                    <div class="activity-title">ตอบปัญหาชีววิทยาการแพทย์ ณ จุฬาลงกรณ์มหาวิทยาลัย(Amsci)</div>
+                    <div class="activity-title">1. ตอบปัญหาชีววิทยาการแพทย์ ณ จุฬาลงกรณ์มหาวิทยาลัย (Amsci)</div>
                     <div class="activity-desc">
                         เป็นงานแข่งตอบปัญหาแพทย์ครั้งแรกในระดับมัธยมศึกษาตอนปลาย ได้เปิดโลกมากๆได้ลองทำข้อสอบที่ยากๆ ได้เจอคนที่เก่งๆ เป็น first impression ในการหาความรู้ชีววิทยาเพื่อแข่งขันสนามต่างๆได้คุยกับพี่ๆในงานเป็นแรงบันดาลใจในการเป็นแพทย์
                     </div>
@@ -328,11 +353,11 @@
             <div class="activity-item">
                 <div class="activity-img-wrapper">
                     <img src="IMG_8285.jpeg" alt="แข่งตอบปัญหาชีววิทยาชิงถ้วยพระราชทาน">
+                    <div class="year-tag">+ 2567</div>
                     <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <div class="year-tag">+ 2567</div>
                 <div class="activity-details">
-                    <div class="activity-title">แข่งตอบปัญหาชีววิทยาชิงถ้วยพระราชทาน ณ มหาวิทยาลัยเกษตรศาสตร์</div>
+                    <div class="activity-title">2. แข่งตอบปัญหาชีววิทยาชิงถ้วยพระราชทาน ณ มหาวิทยาลัยเกษตรศาสตร์</div>
                     <div class="activity-desc">
                         เป็นงานแข่งที่ได้ไปต่อหลังจากแข่งที่จุฬา แต่รอบนี้เนื้อหาจะเป็นชีววิทยามปลายทั้งหมด ระดับความยากมากกว่าสอวน ได้คะแนนรวม 39 | 100 เป็นงานที่ได้แข่งแล้วรู้สึกตึงมือมากแต่ก็ได้ประสบการณ์กับความรู้มามากเช่นกัน
                     </div>
@@ -343,11 +368,11 @@
             <div class="activity-item">
                 <div class="activity-img-wrapper">
                     <img src="IMG_8284.jpeg" alt="ตอบปัญหาชีววิทยาการแพทย์ Amsci 2569">
+                    <div class="year-tag">+ 2569</div>
                     <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <div class="year-tag">+ 2569</div>
                 <div class="activity-details">
-                    <div class="activity-title">ตอบปัญหาชีววิทยาการแพทย์ ณ จุฬาลงกรณ์มหาวิทยาลัย(Amsci)</div>
+                    <div class="activity-title">3. ตอบปัญหาชีววิทยาการแพทย์ ณ จุฬาลงกรณ์มหาวิทยาลัย (Amsci)</div>
                     <div class="activity-desc">
                         ได้เข้าร่วมการแข่งขันตอบปัญหาชีวการแพทย์ เป็นงานแข่งตอบปัญหาแพทย์ครั้งสุดท้ายในมัธยมศึกษาตอนปลาย ผมเต็มที่กับงานนี้มากได้คะแนนรวม 55 | 100 ได้รู้ว่าเรายังขาดความรู้อะไรในชีววิทยาและต้องนับไปปรับปรุงในการสอบเข้ามหาวิทยาลัย
                     </div>
@@ -358,13 +383,13 @@
             <div class="activity-item">
                 <div class="activity-img-wrapper">
                     <img src="IMG_8283.jpeg" alt="แข่งขันตอบปัญหาวิทยาศาสตร์ ม.บูรพา">
+                    <div class="year-tag">+ 2569</div>
                     <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <div class="year-tag">+ 2569</div>
                 <div class="activity-details">
-                    <div class="activity-title">แข่งขันตอบปัญหาวิทยาศาสตร์ ณ มหาวิทยาลัยบูรพา</div>
+                    <div class="activity-title">4. แข่งขันตอบปัญหาวิทยาศาสตร์ ณ มหาวิทยาลัยบูรพา</div>
                     <div class="activity-desc">
-                        เป็นงานที่ต่อจากการแข่งที่จุฬา งานแข่งนี้มีทั้งหมด3วิชา ฟิสิกส์เคมีชีวะ เป็นงานที่ทำให้รู้ว่าเราขาดประสบการณ์และความรู้อย่างมากในการแข่งขันกับคนอื่น และยังต้องพัฒนาต่อไป
+                        เป็นงานที่ต่อจากการแข่งที่จุฬา งานแข่งนี้มีทั้งหมด 3 วิชา ฟิสิกส์เคมีชีวะ เป็นงานที่ทำให้รู้ว่าเราขาดประสบการณ์และความรู้อย่างมากในการแข่งขันกับคนอื่น และยังต้องพัฒนาต่อไป
                     </div>
                 </div>
             </div>
