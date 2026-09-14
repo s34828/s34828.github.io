@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - กิจกรรมที่เข้าร่วม</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Sarabun:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', 'Sarabun', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f3;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #1b302b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            background-color: #0f2b26;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            height: 60px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            height: 100%;
+        }
+
+        .back-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: #72a99d;
+            font-weight: 600;
+            padding-right: 15px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            height: 100%;
+        }
+
+        .nav-menu li {
+            height: 100%;
+        }
+
+        .nav-menu li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #a3c2ba;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 0 22px;
+            height: 100%;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-menu li a i {
+            font-size: 18px; 
+            margin-bottom: 3px;
+        }
+
+        .nav-menu li a:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-menu li a.active {
+            color: #ffffff;
+            background-color: #173d36;
+            font-weight: 600;
+        }
+
+        .nav-menu li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #cf3838;
+        }
+
+        .rec-no {
+            font-size: 11px;
+            color: #72a99d;
+            letter-spacing: 1px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 30px 0;
+            flex: 1;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #cf3838;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f2b26;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            font-size: 24px;
+            color: #0f2b26;
+        }
+
+        .ecg-line {
+            width: 260px;
+            height: 20px;
+            margin: 10px 0 25px 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 50'%3E%3Cpath d='M0 25 L150 25 L160 10 L170 40 L180 0 L190 50 L200 20 L210 25 L500 25' stroke='%23cf3838' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        /* Activity List */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .activity-img-wrapper {
+            position: relative;
+            width: 60px;
+            height: 48px;
+            flex-shrink: 0;
+            background: #ffffff;
+            border: 1px solid #dcdcdc;
+            padding: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .activity-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .zoom-icon {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background: rgba(15, 43, 38, 0.8);
+            color: #fff;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .year-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: #cf3838;
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: #173d36;
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .activity-desc {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #4a635d;
+            font-family: 'Sarabun', sans-serif;
+            font-style: italic;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+            font-size: 12px;
+            color: #6b827c;
+        }
+
+        .page-num {
+            margin-right: 10px;
+        }
+
+        .nav-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #d0d8d5;
+            background: #ffffff;
+            color: #4a635d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #0f2b26;
+            color: #ffffff;
+            border-color: #0f2b26;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-left">
+            <a href="profile.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+            <div class="brand">
+                <i class="fa-solid fa-heart-pulse"></i> PORTFOLIO
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
+                <li><a href="education.html"><i class="fa-solid fa-file-lines"></i> ประวัติการศึกษา</a></li>
+                <li><a href="profile.html"><i class="fa-solid fa-user"></i> ประวัติส่วนตัว</a></li>
+                <li><a href="activities.html" class="active"><i class="fa-solid fa-star"></i> กิจกรรม</a></li>
+                <li><a href="interest.html"><i class="fa-solid fa-bullseye"></i> ความสนใจศึกษาต่อ</a></li>
+            </ul>
+        </div>
+
+        <div class="rec-no">REC. NO. 2569-001</div>
+    </header>
+
+    <!-- CONTENT -->
+    <main>
+        <div class="section-tag">— SECTION 04</div>
+        <h1 class="section-title">
+            <i class="fa-regular fa-star"></i> กิจกรรมที่เข้าร่วม
+        </h1>
+        <div class="ecg-line"></div>
+
+        <div class="activity-list">
+            <!-- Item 1 -->
+            <div class="activity-item">
+                <div class="activity-img-wrapper">
+                    <img src="https://via.placeholder.com/120x90" alt="กิจกรรมตอบปัญหาชีววิทยาการแพทย์">
+                    <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="year-tag">+ 2567</div>
+                <div class="activity-details">
+                    <div class="activity-title">ตอบปัญหาชีววิทยาการแพทย์ ณ จุฬาลงกรณ์มหาวิทยาลัย(Amsci)</div>
+                    <div class="activity-desc">
+                        เป็นงานแข่งตอบปัญหาแพทย์ครั้งแรกในระดับมัธยมศึกษาตอนปลาย ได้เปิดโลกมากๆได้ลองทำข้อสอบที่ยากๆ ได้เจอคนที่เก่งๆ เป็น first impression ในการหาความรู้ชีววิทยาเพื่อแข่งขันสนามต่างๆได้คุยกับพี่ๆในงานเป็นแรงบันดาลใจในการเป็นแพทย์
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="activity-item">
+                <div class="activity-img-wrapper">
+                    <img src="https://via.placeholder.com/120x90" alt="แข่งตอบปัญหาชีววิทยาชิงถ้วยพระราชทาน">
+                    <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="year-tag">+ 2567</div>
+                <div class="activity-details">
+                    <div class="activity-title">แข่งตอบปัญหาชีววิทยาชิงถ้วยพระราชทาน ณ มหาวิทยาลัยเกษตรศาสตร์</div>
+                    <div class="activity-desc">
+                        เป็นงานแข่งที่ได้ไปต่อหลังจากแข่งที่จุฬา แต่รอบนี้เนื้อหาจะเป็นชีววิทยามปลายทั้งหมด ระดับความยากมากกว่าสอวน ได้คะแนนรวม 39 | 100 เป็นงานที่ได้แข่งแล้วรู้สึกตึงมือมากแต่ก็ได้ประสบการณ์กับความรู้มามากเช่นกัน
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="activity-item">
+                <div class="activity-img-wrapper">
+                    <img src="https://via.placeholder.com/120x90" alt="ตอบปัญหาชีววิทยาการแพทย์ Amsci 2569">
+                    <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="year-tag">+ 2569</div>
+                <div class="activity-details">
+                    <div class="activity-title">ตอบปัญหาชีววิทยาการแพทย์ ณ จุฬาลงกรณ์มหาวิทยาลัย(Amsci)</div>
+                    <div class="activity-desc">
+                        ได้เข้าร่วมการแข่งขันตอบปัญหาชีวการแพทย์ เป็นงานแข่งตอบปัญหาแพทย์ครั้งสุดท้ายในมัธยมศึกษาตอนปลาย ผมเต็มที่กับงานนี้มากได้คะแนนรวม 55 | 100 ได้รู้ว่าเรายังขาดความรู้อะไรในชีววิทยาและต้องนับไปปรับปรุงในการสอบเข้ามหาวิทยาลัย
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="activity-item">
+                <div class="activity-img-wrapper">
+                    <img src="https://via.placeholder.com/120x90" alt="แข่งขันตอบปัญหาวิทยาศาสตร์ ม.บูรพา">
+                    <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                </div>
+                <div class="year-tag">+ 2569</div>
+                <div class="activity-details">
+                    <div class="activity-title">แข่งขันตอบปัญหาวิทยาศาสตร์ ณ มหาวิทยาลัยบูรพา</div>
+                    <div class="activity-desc">
+                        เป็นงานที่ต่อจากการแข่งที่จุฬา งานแข่งนี้มีทั้งหมด3วิชา ฟิสิกส์เคมีชีวะ เป็นงานที่ทำให้รู้ว่าเราขาดประสบการณ์และความรู้อย่างมากในการแข่งขันกับคนอื่น และยังต้องพัฒนาต่อไป
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="page-num">04 / 05</span>
+        <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i></a>
+        <a href="profile.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="interest.html" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></a>
+    </footer>
+
+</body>
+</html>
