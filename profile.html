@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - ประวัติส่วนตัว</title>
+    <title>Portfolio - คำนำ</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,23 +131,15 @@
             margin: auto;
             width: 90%;
             display: flex;
-            flex-direction: column;
-            gap: 25px;
-            padding: 30px 0;
-        }
-
-        .page-header {
-            border-bottom: 2px solid #0f2b26;
-            padding-bottom: 10px;
-            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: flex-end;
+            gap: 40px;
+            padding: 40px 0;
         }
 
-        .page-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #0f2b26;
+        .text-content {
+            flex: 1;
+            max-width: 550px;
         }
 
         .category-tag {
@@ -156,113 +148,94 @@
             color: #cf3838;
             font-weight: 600;
             text-transform: uppercase;
-        }
-
-        /* Profile Layout */
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 30px;
-            align-items: start;
-        }
-
-        /* Side Card / Avatar */
-        .profile-card {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0e6e3;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-
-        .profile-card h3 {
-            font-size: 18px;
-            color: #0f2b26;
             margin-bottom: 5px;
         }
 
-        .profile-card p {
-            font-size: 13px;
-            color: #6b827c;
-            margin-bottom: 15px;
+        .ecg-line {
+            width: 100%;
+            height: 25px;
+            margin: 10px 0 20px 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 50'%3E%3Cpath d='M0 25 L150 25 L160 10 L170 40 L180 0 L190 50 L200 20 L210 25 L500 25' stroke='%23cf3838' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
         }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            justify-content: center;
-        }
-
-        .tag {
-            background: #eef3f1;
-            color: #173d36;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        /* Details Sections */
-        .details-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .info-box {
-            background: #ffffff;
-            padding: 22px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0e6e3;
-        }
-
-        .info-box h2 {
-            font-size: 16px;
+        .name {
+            font-size: 38px;
+            font-weight: 700;
             color: #0f2b26;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px dashed #d0d8d5;
-            padding-bottom: 8px;
+            margin-bottom: 5px;
+            line-height: 1.2;
         }
 
-        .info-box h2 i {
-            color: #cf3838;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px 20px;
-            font-family: 'Sarabun', sans-serif;
+        .apply-for {
             font-size: 14px;
+            color: #4a635d;
+            margin-bottom: 25px;
         }
 
-        .info-item {
-            display: flex;
-            gap: 8px;
+        .apply-for span {
+            font-style: italic;
+            color: #6b827c;
         }
 
-        .info-item .label {
-            font-weight: 600;
-            color: #173d36;
-            min-width: 90px;
+        .description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #2c423d;
+            margin-bottom: 25px;
+            font-family: 'Sarabun', sans-serif;
         }
 
-        .info-item .value {
+        .quote-box {
+            border-left: 3px solid #0f2b26;
+            padding-left: 15px;
+            font-size: 13.5px;
+            font-style: italic;
             color: #3b544e;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .meta-info {
+            font-size: 10px;
+            color: #839b94;
+            letter-spacing: 1.5px;
+        }
+
+        /* --- PHOTO FRAME --- */
+        .photo-container {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 25px 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: rotate(2deg);
+            position: relative;
+            width: 280px;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tape-top {
+            position: absolute;
+            top: -12px;
+            left: 30%;
+            width: 90px;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(200, 200, 200, 0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transform: rotate(-3deg);
+            backdrop-filter: blur(1px);
         }
 
         /* --- FOOTER --- */
@@ -307,15 +280,17 @@
     <!-- NAVBAR ด้านบน -->
     <header>
         <div class="nav-left">
+            <!-- ปุ่มย้อนกลับลิงก์ไปยังหน้าแรก (index.html) -->
             <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
             <div class="brand">
                 <i class="fa-solid fa-heart-pulse"></i> PORTFOLIO
             </div>
 
             <ul class="nav-menu">
-                <li><a href="index.html"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
+                <!-- ตั้งค่า href="#" เพื่อให้อยู่ที่หน้าเดิม (คำนำ) -->
+                <li><a href="#" class="active"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
                 <li><a href="education.html"><i class="fa-solid fa-file-lines"></i> ประวัติการศึกษา</a></li>
-                <li><a href="profile.html" class="active"><i class="fa-solid fa-user"></i> ประวัติส่วนตัว</a></li>
+                <li><a href="profile.html"><i class="fa-solid fa-user"></i> ประวัติส่วนตัว</a></li>
                 <li><a href="activities.html"><i class="fa-solid fa-star"></i> กิจกรรม</a></li>
                 <li><a href="interest.html"><i class="fa-solid fa-bullseye"></i> ความสนใจศึกษาต่อ</a></li>
             </ul>
@@ -326,74 +301,40 @@
 
     <!-- CONTENT -->
     <main>
-        <div class="page-header">
-            <h1 class="page-title">ประวัติส่วนตัว (Personal Profile)</h1>
-            <div class="category-tag">— APPLICANT INFORMATION</div>
-        </div>
+        <div class="text-content">
+            <div class="category-tag">— PORTFOLIO · MEDICAL TRACK</div>
+            <div class="ecg-line"></div>
 
-        <div class="profile-grid">
-            <!-- คอลัมน์รูปซ้าย -->
-            <div class="profile-card">
-                <img src="https://via.placeholder.com/280x340" alt="รูปถ่ายนายเตชินท์" class="profile-img">
-                <h3>นายเตชินท์ เตียววิบูลย์</h3>
-                <p>ชื่อเล่น: [ชื่อเล่น]</p>
-                
-                <div class="skill-tags">
-                    <span class="tag">Biology</span>
-                    <span class="tag">English</span>
-                    <span class="tag">Leadership</span>
-                    <span class="tag">First Aid</span>
-                </div>
+            <h1 class="name">นายเตชินท์ เตียววิบูลย์</h1>
+            <p class="apply-for">ผู้สมัครเข้าศึกษาต่อคณะ <span>[แพทยศาสตร์ / ฯลฯ]</span></p>
+
+            <p class="description">
+                แฟ้มสะสมผลงานฉบับนี้รวบรวมประวัติการศึกษา ประวัติส่วนตัว กิจกรรม และความมุ่งมั่นในการเดินสู่เส้นทางวิชาชีพแพทย์ เพื่อประกอบการพิจารณาเข้าศึกษาต่อ
+            </p>
+
+            <div class="quote-box">
+                "จงสนุกกับเส้นทางนั้นเถอะ สนุกให้เยอะๆเลย สิ่งที่สำคัญกว่าสิ่งที่ต้องการน่ะ มันต้องอยู่ระหว่างทางนั้นแน่ๆ"
             </div>
 
-            <!-- คอลัมน์ข้อมูลขวา -->
-            <div class="details-container">
-                
-                <!-- ข้อมูลทั่วไป -->
-                <div class="info-box">
-                    <h2><i class="fa-solid fa-id-card"></i> ข้อมูลส่วนตัว</h2>
-                    <div class="info-grid">
-                        <div class="info-item"><span class="label">วัน/เดือน/ปีเกิด:</span> <span class="value">[ใส่วันเดือนปีเกิด]</span></div>
-                        <div class="info-item"><span class="label">อายุ:</span> <span class="value">[18] ปี</span></div>
-                        <div class="info-item"><span class="label">สัญชาติ/เชื้อชาติ:</span> <span class="value">ไทย / ไทย</span></div>
-                        <div class="info-item"><span class="label">ศาสนา:</span> <span class="value">พุทธ</span></div>
-                        <div class="info-item"><span class="label">กรุ๊ปเลือด:</span> <span class="value">[O / A / B / AB]</span></div>
-                        <div class="info-item"><span class="label">แผนการเรียน:</span> <span class="value">วิทยาศาสตร์-คณิตศาสตร์</span></div>
-                    </div>
-                </div>
+            <div class="meta-info">
+                REC. NO. 2569-001 · STATUS: FOR REVIEW
+            </div>
+        </div>
 
-                <!-- ข้อมูลการติดต่อ -->
-                <div class="info-box">
-                    <h2><i class="fa-solid fa-address-book"></i> ช่องทางการติดต่อ</h2>
-                    <div class="info-grid">
-                        <div class="info-item"><span class="label">เบอร์โทรศัพท์:</span> <span class="value">08X-XXX-XXXX</span></div>
-                        <div class="info-item"><span class="label">อีเมล:</span> <span class="value">techin.t@example.com</span></div>
-                        <div class="info-item"><span class="label">Line ID:</span> <span class="value">[Your Line ID]</span></div>
-                        <div class="info-item"><span class="label">ที่อยู่ปัจจุบัน:</span> <span class="value">[บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด]</span></div>
-                    </div>
-                </div>
-
-                <!-- ข้อมูลครอบครัว / ความสามารถพิเศษ -->
-                <div class="info-box">
-                    <h2><i class="fa-solid fa-hospital-user"></i> ทักษะและความสนใจ</h2>
-                    <div class="info-grid">
-                        <div class="info-item"><span class="label">ภาษา:</span> <span class="value">ไทย (ดีมาก), อังกฤษ (ดี)</span></div>
-                        <div class="info-item"><span class="label">คอมพิวเตอร์:</span> <span class="value">MS Office, Canva, HTML/CSS</span></div>
-                        <div class="info-item"><span class="label">งานอดิเรก:</span> <span class="value">อ่านวารสารการแพทย์, ออกกำลังกาย, เล่นดนตรี</span></div>
-                        <div class="info-item"><span class="label">คติประจำใจ:</span> <span class="value">"ความพยายามไม่เคยทรยศผู้ที่ตั้งใจจริง"</span></div>
-                    </div>
-                </div>
-
+        <div class="photo-container">
+            <div class="polaroid">
+                <div class="tape-top"></div>
+                <img src="https://via.placeholder.com/280x340" alt="รูปถ่ายนายเตชินท์">
             </div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <span class="page-num">03 / 05</span>
+        <span class="page-num">01 / 05</span>
         <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i></a>
-        <a href="education.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
-        <a href="activities.html" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></a>
+        <a href="index.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="education.html" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></a>
     </footer>
 
 </body>
