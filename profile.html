@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - คำนำ</title>
+    <title>Portfolio - ความสนใจในการศึกษาต่อ</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Sarabun:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -127,115 +127,135 @@
 
         /* --- MAIN CONTENT --- */
         main {
-            max-width: 1100px;
-            margin: auto;
-            width: 90%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            padding: 40px 0;
-        }
-
-        .text-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 92%;
+            padding: 25px 0;
             flex: 1;
-            max-width: 550px;
         }
 
-        .category-tag {
+        .section-tag {
             font-size: 11px;
             letter-spacing: 2px;
             color: #cf3838;
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #0f2b26;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            font-size: 22px;
+            color: #cf3838;
+            border: 2px solid #cf3838;
+            border-radius: 50%;
+            padding: 4px;
         }
 
         .ecg-line {
-            width: 100%;
-            height: 25px;
-            margin: 10px 0 20px 0;
+            width: 250px;
+            height: 20px;
+            margin: 8px 0 20px 0;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 50'%3E%3Cpath d='M0 25 L150 25 L160 10 L170 40 L180 0 L190 50 L200 20 L210 25 L500 25' stroke='%23cf3838' stroke-width='2' fill='none'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-size: contain;
         }
 
-        .name {
-            font-size: 38px;
+        /* Card List Layout */
+        .university-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .uni-card {
+            background: #eaeee8;
+            border-left: 3px solid #173d36;
+            border-radius: 2px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .uni-num {
+            font-size: 14px;
+            font-weight: 700;
+            color: #8c2a2a;
+            border: 1.5px solid #8c2a2a;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .uni-logo {
+            width: 90px;
+            height: 90px;
+            background: #ffffff;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .uni-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .uni-details {
+            flex: 1;
+        }
+
+        .uni-faculty {
+            font-size: 18px;
             font-weight: 700;
             color: #0f2b26;
-            margin-bottom: 5px;
-            line-height: 1.2;
-        }
-
-        .apply-for {
-            font-size: 14px;
-            color: #4a635d;
-            margin-bottom: 25px;
-        }
-
-        .apply-for span {
             font-style: italic;
-            color: #6b827c;
+            margin-bottom: 2px;
         }
 
-        .description {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #2c423d;
-            margin-bottom: 25px;
+        .uni-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #8c2a2a;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .uni-reason {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #384e48;
+            font-style: italic;
             font-family: 'Sarabun', sans-serif;
         }
 
-        .quote-box {
-            border-left: 3px solid #0f2b26;
-            padding-left: 15px;
+        /* Bottom Statement */
+        .bottom-statement {
+            margin-top: 25px;
             font-size: 13.5px;
-            font-style: italic;
-            color: #3b544e;
             line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .meta-info {
-            font-size: 10px;
-            color: #839b94;
-            letter-spacing: 1.5px;
-        }
-
-        /* --- PHOTO FRAME --- */
-        .photo-container {
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .polaroid {
-            background: #ffffff;
-            padding: 12px 12px 25px 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            transform: rotate(2deg);
-            position: relative;
-            width: 280px;
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 340px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .tape-top {
-            position: absolute;
-            top: -12px;
-            left: 30%;
-            width: 90px;
-            height: 25px;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(200, 200, 200, 0.3);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transform: rotate(-3deg);
-            backdrop-filter: blur(1px);
+            color: #2c423d;
+            font-style: italic;
+            font-family: 'Sarabun', sans-serif;
         }
 
         /* --- FOOTER --- */
@@ -277,64 +297,93 @@
 </head>
 <body>
 
-    <!-- NAVBAR ด้านบน -->
+    <!-- NAVBAR -->
     <header>
         <div class="nav-left">
-            <!-- ปุ่มย้อนกลับลิงก์ไปยังหน้าแรก (index.html) -->
-            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="activities.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
             <div class="brand">
                 <i class="fa-solid fa-heart-pulse"></i> PORTFOLIO
             </div>
 
             <ul class="nav-menu">
-                <!-- ตั้งค่า href="#" เพื่อให้อยู่ที่หน้าเดิม (คำนำ) -->
-                <li><a href="#" class="active"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-heart-pulse"></i> คำนำ</a></li>
                 <li><a href="education.html"><i class="fa-solid fa-file-lines"></i> ประวัติการศึกษา</a></li>
                 <li><a href="profile.html"><i class="fa-solid fa-user"></i> ประวัติส่วนตัว</a></li>
                 <li><a href="activities.html"><i class="fa-solid fa-star"></i> กิจกรรม</a></li>
-                <li><a href="interest.html"><i class="fa-solid fa-bullseye"></i> ความสนใจศึกษาต่อ</a></li>
+                <li><a href="interest.html" class="active"><i class="fa-solid fa-bullseye"></i> ความสนใจศึกษาต่อ</a></li>
             </ul>
         </div>
 
         <div class="rec-no">REC. NO. 2569-001</div>
     </header>
 
-    <!-- CONTENT -->
+    <!-- MAIN CONTENT -->
     <main>
-        <div class="text-content">
-            <div class="category-tag">— PORTFOLIO · MEDICAL TRACK</div>
-            <div class="ecg-line"></div>
+        <div class="section-tag">— SECTION 05</div>
+        <h1 class="section-title">
+            <i class="fa-solid fa-bullseye"></i> ความสนใจในการศึกษาต่อ
+        </h1>
+        <div class="ecg-line"></div>
 
-            <h1 class="name">นายเตชินท์ เตียววิบูลย์</h1>
-            <p class="apply-for">ผู้สมัครเข้าศึกษาต่อคณะ <span>[แพทยศาสตร์ / ฯลฯ]</span></p>
-
-            <p class="description">
-                แฟ้มสะสมผลงานฉบับนี้รวบรวมประวัติการศึกษา ประวัติส่วนตัว กิจกรรม และความมุ่งมั่นในการเดินสู่เส้นทางวิชาชีพแพทย์ เพื่อประกอบการพิจารณาเข้าศึกษาต่อ
-            </p>
-
-            <div class="quote-box">
-                "จงสนุกกับเส้นทางนั้นเถอะ สนุกให้เยอะๆเลย สิ่งที่สำคัญกว่าสิ่งที่ต้องการน่ะ มันต้องอยู่ระหว่างทางนั้นแน่ๆ"
+        <div class="university-list">
+            <!-- 01 รามาธิบดี -->
+            <div class="uni-card">
+                <div class="uni-num">01</div>
+                <div class="uni-logo">
+                    <!-- ใส่ URL รูปโลโก้ของมหาวิทยาลัย -->
+                    <img src="https://upload.wikimedia.org/wikipedia/th/1/12/Mahidol_U.png" alt="คณะแพทยศาสตร์ รามาธิบดี มหาวิทยาลัยมหิดล">
+                </div>
+                <div class="uni-details">
+                    <div class="uni-faculty">คณะแพทยศาสตร์ รามาธิบดี</div>
+                    <div class="uni-name">มหาวิทยาลัยมหิดล</div>
+                    <p class="uni-reason">
+                        เป็นมหาวิทยาลัยในฝันเพราะได้ลองไปโอเพนเฮ้าส์แล้วชอบที่นี่มากๆแล้วได้ขึ้นชื่อว่าเป็นมหาวิทยาลัยแพทย์ชั้นนำ การแพทย์ทันสมัย มีพี่ที่รู้จักหลายๆคนเรียนที่นี่ แล้วรู้สึกผูกพันกับคนในนี้มากๆ
+                    </p>
+                </div>
             </div>
 
-            <div class="meta-info">
-                REC. NO. 2569-001 · STATUS: FOR REVIEW
+            <!-- 02 จุฬาลงกรณ์ -->
+            <div class="uni-card">
+                <div class="uni-num">02</div>
+                <div class="uni-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/th/3/32/Chulalongkorn_University_Seal.svg" alt="คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย">
+                </div>
+                <div class="uni-details">
+                    <div class="uni-faculty">คณะแพทยศาสตร์</div>
+                    <div class="uni-name">จุฬาลงกรณ์มหาวิทยาลัย</div>
+                    <p class="uni-reason">
+                        เป็นมหาวิทยาลัยที่ชอบมากๆอีกที่เพราะได้ไปแข่งตอบปัญหาแพทย์มา ชอบบรรยากาศและผูกพันกับพี่ๆในมหาลัย ติดกับตัวเมืองนั่ง BTS ไปมาสะดวก อีกทั้งยังมีทุนให้ เครื่องมือการแพทย์ทันสมัย
+                    </p>
+                </div>
+            </div>
+
+            <!-- 03 ขอนแก่น -->
+            <div class="uni-card">
+                <div class="uni-num">03</div>
+                <div class="uni-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/th/b/bd/KKU_Emblem.svg" alt="คณะแพทยศาสตร์ มหาวิทยาลัยขอนแก่น">
+                </div>
+                <div class="uni-details">
+                    <div class="uni-faculty">คณะแพทยศาสตร์</div>
+                    <div class="uni-name">มหาวิทยาลัยขอนแก่น</div>
+                    <p class="uni-reason">
+                        ที่เลือกคณะแพทย์ที่นี่เพราะมีพี่คนหนึ่งเป็นไอดอลได้แนะนำต่างๆทั้งเรื่องในมหาลัยและเรื่องชีววิทยาและรู้สึกอยากเป็นส่วนหนึ่งของมหาลัยนี้
+                    </p>
+                </div>
             </div>
         </div>
 
-        <div class="photo-container">
-            <div class="polaroid">
-                <div class="tape-top"></div>
-                <img src="https://via.placeholder.com/280x340" alt="รูปถ่ายนายเตชินท์">
-            </div>
+        <div class="bottom-statement">
+            เป้าหมายในอนาคตหลังการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น หาก ผมได้เป็นแพทย์ตามที่หวัง ผมจะนำความรู้ที่มีรักษาคนไม้อย่างเต็มที่ เพื่อประโยชน์สุขของประชาชน
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <span class="page-num">01 / 05</span>
+        <span class="page-num">05 / 05</span>
         <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i></a>
-        <a href="index.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
-        <a href="education.html" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></a>
+        <a href="activities.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="index.html" class="nav-btn"><i class="fa-solid fa-arrow-right"></i></a>
     </footer>
 
 </body>
