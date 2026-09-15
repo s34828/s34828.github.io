@@ -166,7 +166,7 @@
             background-size: contain;
         }
 
-        /* Activity List - ขยายขนาดใหญ่ตามตัวอย่าง */
+        /* Activity List */
         .activity-list {
             display: flex;
             flex-direction: column;
@@ -181,6 +181,13 @@
             border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
         }
 
+        /* คอนเทนเนอร์กลุ่มรูปภาพสำหรับรองรับทั้ง 1 หรือหลายรูป */
+        .activity-gallery {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         /* กรอบรูปภาพขนาดใหญ่สไตล์การ์ดภาพถ่าย */
         .activity-img-wrapper {
             position: relative;
@@ -192,6 +199,13 @@
             border-radius: 4px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-right: 15px; /* เว้นที่ให้แท็กปีขวา */
+        }
+
+        /* กรณีภาพซ้อนใน Gallery ปรับขนาดให้พอดีถ้ามีหลายรูป */
+        .activity-gallery .activity-img-wrapper {
+            width: 240px;
+            height: 160px;
+            margin-right: 10px;
         }
 
         .activity-img-wrapper img {
@@ -260,9 +274,11 @@
                 flex-direction: column;
                 gap: 20px;
             }
-            .activity-img-wrapper {
+            .activity-img-wrapper,
+            .activity-gallery .activity-img-wrapper {
                 width: 100%;
                 height: 220px;
+                margin-right: 0;
             }
         }
 
@@ -379,12 +395,19 @@
                 </div>
             </div>
 
-            <!-- Item 4 -->
+            <!-- Item 4 (เพิ่มภาพที่ 2 ในกิจกรรมนี้) -->
             <div class="activity-item">
-                <div class="activity-img-wrapper">
-                    <img src="IMG_8283.jpeg" alt="แข่งขันตอบปัญหาวิทยาศาสตร์ ม.บูรพา">
-                    <div class="year-tag">+ 2569</div>
-                    <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <div class="activity-gallery">
+                    <div class="activity-img-wrapper">
+                        <img src="IMG_8283.jpeg" alt="แข่งขันตอบปัญหาวิทยาศาสตร์ ม.บูรพา รูปที่ 1">
+                        <div class="year-tag">+ 2569</div>
+                        <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <!-- ภาพที่ 2 ของกิจกรรมที่ 4 (เปลี่ยนชื่อไฟล์ IMG_XXXX.jpeg ตามต้องการ) -->
+                    <div class="activity-img-wrapper">
+                        <img src="IMG_8623.jpeg" alt="แข่งขันตอบปัญหาวิทยาศาสตร์ ม.บูรพา รูปที่ 2">
+                        <span class="zoom-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
                 </div>
                 <div class="activity-details">
                     <div class="activity-title">4. แข่งขันตอบปัญหาวิทยาศาสตร์ ณ มหาวิทยาลัยบูรพา</div>
